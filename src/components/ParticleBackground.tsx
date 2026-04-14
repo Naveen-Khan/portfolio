@@ -1,143 +1,156 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo, useCallback } from "react";
-import * as THREE from "three";
-import { Float, Stars } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
-/* ── Neural Network Nodes with Connections ── */
-const NeuralNetwork = () => {
-  const linesRef = useRef<THREE.LineSegments>(null);
-  const pointsRef = useRef<THREE.Points>(null);
-  const count = 100;
-  const connectionDist = 2.8;
+/* ── CSS Particle Background ── */
+const ParticleBackground = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const positions = useMemo(() => {
-    const arr: { x: number; y: number; z: number; speed: number; offset: number }[] = [];
-    for (let i = 0; i < count; i++) {
-      arr.push({
-        x: (Math.random() - 0.5) * 16,
-        y: (Math.random() - 0.5) * 14,
-        z: (Math.random() - 0.5) * 10,
-        speed: Math.random() * 0.2 + 0.05,
-        offset: Math.random() * Math.PI * 2,
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animationId: number;
+    let particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      size: number;
+    }> = [];
+
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    const createParticles = () => {
+      particles = [];
+      const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 2 + 1,
+        });
+      }
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Draw particles
+      particles.forEach((p) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = "hsl(170 100% 50% / 0.6)";
+        ctx.fill();
+
+        // Update position
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around edges
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
       });
-    }
-    return arr;
-  }, []);
 
-  const pointGeo = useMemo(() => {
-    const geo = new THREE.BufferGeometry();
-    const pos = new Float32Array(count * 3);
-    const sizes = new Float32Array(count);
-    positions.forEach((p, i) => {
-      pos[i * 3] = p.x;
-      pos[i * 3 + 1] = p.y;
-      pos[i * 3 + 2] = p.z;
-      sizes[i] = Math.random() * 3 + 1;
-    });
-    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    geo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
-    return geo;
-  }, [positions]);
+      // Draw connections
+      const connectionDist = 120;
+      ctx.strokeStyle = "hsl(170 100% 50% / 0.15)";
+      ctx.lineWidth = 1;
 
-  const lineGeo = useMemo(() => {
-    const maxLines = count * count;
-    const geo = new THREE.BufferGeometry();
-    const pos = new Float32Array(maxLines * 6);
-    geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-    return geo;
-  }, []);
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
 
-  useFrame(({ clock }) => {
-    const t = clock.getElapsedTime();
-    const posArr = pointGeo.attributes.position.array as Float32Array;
-
-    positions.forEach((p, i) => {
-      posArr[i * 3] = p.x + Math.sin(t * p.speed + p.offset) * 0.8;
-      posArr[i * 3 + 1] = p.y + Math.cos(t * p.speed * 0.7 + p.offset) * 0.6;
-      posArr[i * 3 + 2] = p.z + Math.sin(t * p.speed * 0.5) * 0.4;
-    });
-    pointGeo.attributes.position.needsUpdate = true;
-
-    const linePos = lineGeo.attributes.position.array as Float32Array;
-    let idx = 0;
-    for (let i = 0; i < count; i++) {
-      for (let j = i + 1; j < count; j++) {
-        const dx = posArr[i * 3] - posArr[j * 3];
-        const dy = posArr[i * 3 + 1] - posArr[j * 3 + 1];
-        const dz = posArr[i * 3 + 2] - posArr[j * 3 + 2];
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (dist < connectionDist) {
-          linePos[idx++] = posArr[i * 3];
-          linePos[idx++] = posArr[i * 3 + 1];
-          linePos[idx++] = posArr[i * 3 + 2];
-          linePos[idx++] = posArr[j * 3];
-          linePos[idx++] = posArr[j * 3 + 1];
-          linePos[idx++] = posArr[j * 3 + 2];
+          if (dist < connectionDist) {
+            const opacity = (1 - dist / connectionDist) * 0.15;
+            ctx.strokeStyle = `hsl(170 100% 50% / ${opacity})`;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
         }
       }
-    }
-    lineGeo.setDrawRange(0, idx / 3);
-    lineGeo.attributes.position.needsUpdate = true;
-  });
+
+      animationId = requestAnimationFrame(draw);
+    };
+
+    resize();
+    createParticles();
+    draw();
+
+    window.addEventListener("resize", () => {
+      resize();
+      createParticles();
+    });
+
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
-    <>
-      <points ref={pointsRef} geometry={pointGeo}>
-        <pointsMaterial color="#00ffcc" size={0.06} transparent opacity={0.8} sizeAttenuation />
-      </points>
-      <lineSegments ref={linesRef} geometry={lineGeo}>
-        <lineBasicMaterial color="#00ffcc" transparent opacity={0.12} />
-      </lineSegments>
-    </>
-  );
-};
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+      {/* Animated gradient orbs */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute w-[600px] h-[600px] rounded-full opacity-20 animate-pulse"
+          style={{
+            background: "radial-gradient(circle, hsl(170 100% 50%) 0%, transparent 70%)",
+            top: "10%",
+            left: "20%",
+            animation: "float 20s ease-in-out infinite",
+          }}
+        />
+        <div 
+          className="absolute w-[400px] h-[400px] rounded-full opacity-15"
+          style={{
+            background: "radial-gradient(circle, hsl(280 80% 60%) 0%, transparent 70%)",
+            bottom: "20%",
+            right: "10%",
+            animation: "float 25s ease-in-out infinite reverse",
+          }}
+        />
+        <div 
+          className="absolute w-[300px] h-[300px] rounded-full opacity-10"
+          style={{
+            background: "radial-gradient(circle, hsl(200 100% 60%) 0%, transparent 70%)",
+            top: "50%",
+            right: "30%",
+            animation: "float 18s ease-in-out infinite",
+          }}
+        />
+      </div>
 
-/* ── Floating Geometric Shapes ── */
-const FloatingShape = ({ position, shape }: { position: [number, number, number]; shape: "torus" | "icosa" | "octa" }) => {
-  const ref = useRef<THREE.Mesh>(null);
-  
-  useFrame(({ clock }) => {
-    if (!ref.current) return;
-    const t = clock.getElapsedTime();
-    ref.current.rotation.x = t * 0.12;
-    ref.current.rotation.y = t * 0.08;
-    ref.current.rotation.z = t * 0.05;
-  });
+      {/* Neural network canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ opacity: 0.7 }}
+      />
 
-  const geo = useMemo(() => {
-    switch (shape) {
-      case "torus": return <torusGeometry args={[1.8, 0.03, 16, 100]} />;
-      case "icosa": return <icosahedronGeometry args={[1.4, 1]} />;
-      case "octa": return <octahedronGeometry args={[1, 0]} />;
-    }
-  }, [shape]);
-
-  return (
-    <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.6}>
-      <mesh ref={ref} position={position}>
-        {geo}
-        <meshBasicMaterial color="#00ffcc" wireframe transparent opacity={0.12} />
-      </mesh>
-    </Float>
-  );
-};
-
-const ParticleBackground = () => {
-  return (
-    <div className="fixed inset-0 pointer-events-none" style={{ zIndex: 0 }}>
-      <Canvas
-        camera={{ position: [0, 0, 10], fov: 55 }}
-        dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: true }}
-      >
-        <color attach="background" args={["transparent"]} />
-        <fog attach="fog" args={["#000", 8, 25]} />
-        <Stars radius={60} depth={60} count={2000} factor={3} saturation={0} fade speed={0.3} />
-        <NeuralNetwork />
-        <FloatingShape position={[5, 2, -4]} shape="torus" />
-        <FloatingShape position={[-5, -2, -5]} shape="icosa" />
-        <FloatingShape position={[0, 4, -6]} shape="octa" />
-      </Canvas>
+      {/* Grid overlay */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(hsl(170 100% 50% / 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(170 100% 50% / 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: "50px 50px",
+        }}
+      />
     </div>
   );
 };
