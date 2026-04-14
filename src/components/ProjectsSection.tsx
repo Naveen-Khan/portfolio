@@ -4,11 +4,18 @@ import { FaGithub } from "react-icons/fa";
 
 const projects = [
   {
+    title: "AI-Powered Chatbot Assistant",
+    tech: ["RAG", "LLM", "Python", "NLP"],
+    description:
+      "RAG-based conversational AI chatbot assistant built for intelligent document retrieval and context-aware responses.",
+    github: "https://github.com/Naveen-Khan/CATI--chatbot",
+  },
+  {
     title: "Autonomous Infrastructure Inspection System",
     tech: ["YOLO", "Computer Vision", "Streamlit"],
     description:
       "Computer vision-based road crack detection system with YOLO-based inspection pipeline and interactive Streamlit visualization dashboard.",
-    github: "#",
+    github: "https://github.com/Naveen-Khan/Autonomous-Infrastructure-Inspection-System",
   },
   {
     title: "Medical Disease Diagnosis Agent",
@@ -22,21 +29,21 @@ const projects = [
     tech: ["YOLO", "Computer Vision", "GPS Tracking", "Voice Commands"],
     description:
       "YOLO-based threat detection with GPS tracking alert system and voice command safety trigger — awarded 2nd place at IEEE Project Exhibition 2025.",
-    github: "#",
+    github: "https://github.com/Naveen-Khan/Multimodal-Smar-Wearable-Device-For-Personal-Saftey",
   },
   {
     title: "Coffee Shop Sales Analysis Dashboard",
     tech: ["Excel", "Pivot Tables", "Data Visualization"],
     description:
       "Excel-based business analytics project featuring pivot tables, interactive charts, sales trend insights, and decision-support visualizations.",
-    github: "#",
+    github: "https://github.com/Naveen-Khan/Data-Analyst-projects",
   },
 ];
 
 const ProjectsSection = () => (
   <section id="projects" className="py-20">
     <div className="section-container">
-      <SectionHeading title="Projects" subtitle="Featured work & research" />
+      <SectionHeading title="What I've Built" subtitle="Featured work & research" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
         {projects.map((p, i) => (
           <motion.div

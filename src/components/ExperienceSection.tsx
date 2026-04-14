@@ -5,6 +5,7 @@ const experiences = [
   {
     role: "AI Engineer Intern",
     company: "Civil Aviation Authority Pakistan",
+    date: "Jul 2025 – Aug 2025",
     points: [
       "Built conversational automation system for internal operations",
       "Worked on document indexing pipelines for efficient retrieval",
@@ -15,6 +16,7 @@ const experiences = [
   {
     role: "AI Engineer Intern",
     company: "Itsolera Pvt Ltd",
+    date: "Jan 2026 – Mar 2026",
     points: [
       "Built DenseNet medical image classification system",
       "Performed dataset augmentation to improve model robustness",
@@ -22,14 +24,6 @@ const experiences = [
       "Built Streamlit-based prediction interface for clinicians",
     ],
   },
-];
-
-const certs = [
-  "IEEE Membership",
-  "Engineering Alert Workshop",
-  "AI Intern — Civil Aviation Authority Pakistan",
-  "AI Intern — Itsolera Pvt Ltd",
-  "2D Animation Course — TIF Hacks Institution",
 ];
 
 const achievements = [
@@ -40,7 +34,7 @@ const achievements = [
 const ExperienceSection = () => (
   <section id="experience" className="py-20">
     <div className="section-container max-w-4xl">
-      <SectionHeading title="Experience" />
+      <SectionHeading title="Where I've Worked" subtitle="Working Experience" />
       <div className="space-y-5 mb-16">
         {experiences.map((exp, i) => (
           <motion.div
@@ -53,7 +47,8 @@ const ExperienceSection = () => (
           >
             <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-accent" />
             <h3 className="font-display text-sm font-bold text-primary">{exp.role}</h3>
-            <p className="text-xs text-muted-foreground mb-3">{exp.company}</p>
+            <p className="text-xs text-muted-foreground">{exp.company}</p>
+            <p className="text-xs text-primary/70 mb-3 font-mono-code">{exp.date}</p>
             <ul className="space-y-1.5">
               {exp.points.map((pt) => (
                 <li key={pt} className="text-xs text-foreground/70 flex items-start gap-2">
@@ -65,36 +60,15 @@ const ExperienceSection = () => (
         ))}
       </div>
 
-      <SectionHeading title="Achievements" />
+      <SectionHeading title="Milestones & Recognition" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="glass-card p-6 mb-16"
+        className="glass-card p-6"
       >
         {achievements.map((a) => (
           <p key={a} className="text-sm text-foreground/80 mb-2 last:mb-0">{a}</p>
-        ))}
-      </motion.div>
-
-      <SectionHeading title="Certifications" />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex flex-wrap gap-2 justify-center"
-      >
-        {certs.map((c, i) => (
-          <motion.span
-            key={c}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: i * 0.05 }}
-            className="glass-card text-xs px-3 py-1.5 text-foreground/70 border border-border/50 hover:border-primary/40 transition-colors"
-          >
-            {c}
-          </motion.span>
         ))}
       </motion.div>
     </div>

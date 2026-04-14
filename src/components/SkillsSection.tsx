@@ -31,7 +31,7 @@ const skillGroups = [
 const SkillsSection = () => (
   <section id="skills" className="py-20">
     <div className="section-container">
-      <SectionHeading title="Skills" subtitle="Technologies & tools I work with" />
+      <SectionHeading title="Tech Stack" subtitle="Technologies & tools I work with" />
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
         {skillGroups.map((group, gi) => (
           <motion.div

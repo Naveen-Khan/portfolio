@@ -63,7 +63,7 @@ const HeroSection = () => {
           <a href="https://github.com/Naveen-Khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaGithub />
           </a>
-          <a href="https://www.linkedin.com/in/naveen-khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
+          <a href="https://www.linkedin.com/in/naveenkhan-ai" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaLinkedin />
           </a>
         </motion.div>

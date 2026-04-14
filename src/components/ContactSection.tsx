@@ -57,7 +57,7 @@ const ContactSection = () => {
                 <FaGithub className="text-lg" /> GitHub
               </a>
               <a
-                href="https://www.linkedin.com/in/naveen-khan"
+                href="https://www.linkedin.com/in/naveenkhan-ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card card-hover-glow p-4 flex-1 flex items-center justify-center gap-2 text-sm text-foreground transition-all"
