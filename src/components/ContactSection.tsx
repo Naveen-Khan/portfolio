@@ -42,7 +42,7 @@ const ContactSection = () => {
             </div>
             <div className="flex gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/Naveen-Khan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card card-hover-glow p-4 flex-1 flex items-center justify-center gap-2 text-sm text-foreground transition-all"
@@ -50,7 +50,7 @@ const ContactSection = () => {
                 <FaGithub className="text-lg" /> GitHub
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/naveen-khan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="glass-card card-hover-glow p-4 flex-1 flex items-center justify-center gap-2 text-sm text-foreground transition-all"

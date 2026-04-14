@@ -4,19 +4,19 @@ import SectionHeading from "./SectionHeading";
 const skillGroups = [
   {
     title: "Programming",
-    skills: ["Python", "C++", "Dart"],
+    skills: ["Python", "C++"],
   },
   {
     title: "ML & AI",
-    skills: ["Machine Learning", "Deep Learning", "Computer Vision", "NLP", "LLMs", "RAG Pipeline", "Feature Engineering"],
+    skills: ["Machine Learning", "Computer Vision", "LLMs", "RAG Pipeline", "Feature Engineering"],
   },
   {
     title: "Frameworks",
-    skills: ["TensorFlow", "Keras", "Scikit-learn", "PyTorch", "OpenCV", "Hugging Face", "FAISS", "LangChain"],
+    skills: ["TensorFlow", "Keras", "Scikit-learn", "PyTorch", "OpenCV", "Hugging Face", "FAISS"],
   },
   {
     title: "Web Dev",
-    skills: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "FastAPI", "Streamlit"],
+    skills: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Streamlit"],
   },
   {
     title: "Tools & Platforms",

@@ -54,10 +54,10 @@ const HeroSection = () => {
           <a href="#contact" className="glass-card card-hover-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-foreground transition-all">
             <HiMail className="text-base" /> Contact Me
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
+          <a href="https://github.com/Naveen-Khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
+          <a href="https://www.linkedin.com/in/naveen-khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaLinkedin />
           </a>
           <a href="#" className="glass-card card-hover-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-foreground transition-all">

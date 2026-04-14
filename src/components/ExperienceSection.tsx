@@ -22,14 +22,6 @@ const experiences = [
   },
 ];
 
-const certs = [
-  "IEEE Membership",
-  "Full Workshop — Engineering Alert",
-  "AI Intern — Civil Aviation Authority Pakistan",
-  "AI Intern — Itsolera Pvt Ltd",
-  "2D Animation Course — TIF Hacks Institution",
-];
-
 const achievements = [
   "🏆 2nd Place — IEEE Computer Society Project Exhibition MUET 2025",
   "🎖️ Leadership Recognition — Civil Aviation Training Institute, Hyderabad Airport",
@@ -68,27 +60,10 @@ const ExperienceSection = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="glass-card p-6 mb-16"
+        className="glass-card p-6"
       >
         {achievements.map((a) => (
           <p key={a} className="text-sm text-foreground/80 mb-2">{a}</p>
-        ))}
-      </motion.div>
-
-      <SectionHeading title="Certifications" />
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="flex flex-wrap gap-2 justify-center"
-      >
-        {certs.map((c) => (
-          <span
-            key={c}
-            className="glass-card text-xs px-3 py-1.5 text-foreground/70 border border-border/50"
-          >
-            {c}
-          </span>
         ))}
       </motion.div>
     </div>
