@@ -7,24 +7,24 @@ const skillGroups = [
     skills: ["Python", "C++"],
   },
   {
-    title: "ML & AI",
-    skills: ["Machine Learning", "Computer Vision", "LLMs", "RAG Pipeline", "Feature Engineering"],
+    title: "Machine Learning",
+    skills: ["Machine Learning", "Deep Learning", "Computer Vision", "Feature Engineering", "Model Evaluation Metrics", "Data Augmentation", "Data Annotation"],
   },
   {
     title: "Frameworks",
-    skills: ["TensorFlow", "Keras", "Scikit-learn", "PyTorch", "OpenCV", "Hugging Face", "FAISS"],
+    skills: ["TensorFlow", "Keras", "Scikit-learn", "NumPy", "Matplotlib", "OpenCV"],
   },
   {
-    title: "Web Dev",
-    skills: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Streamlit"],
+    title: "Database",
+    skills: ["MySQL", "Oracle SQL", "SQL Query Writing", "Database Design"],
+  },
+  {
+    title: "Web Development",
+    skills: ["HTML", "CSS", "JavaScript", "PHP"],
   },
   {
     title: "Tools & Platforms",
-    skills: ["Git", "GitHub", "Docker", "Google Colab", "Jupyter", "VS Code", "Roboflow"],
-  },
-  {
-    title: "Databases",
-    skills: ["MySQL", "Oracle SQL", "Vector DBs"],
+    skills: ["Git", "GitHub", "Docker", "Google Colab", "Jupyter", "VS Code", "Roboflow", "Streamlit"],
   },
 ];
 
@@ -46,13 +46,17 @@ const SkillsSection = () => (
               {group.title}
             </h3>
             <div className="flex flex-wrap gap-2">
-              {group.skills.map((skill) => (
-                <span
+              {group.skills.map((skill, si) => (
+                <motion.span
                   key={skill}
-                  className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground border border-border/50 hover:border-primary/40 transition-colors"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: gi * 0.05 + si * 0.03 }}
+                  className="text-xs px-2.5 py-1 rounded-md bg-secondary text-secondary-foreground border border-border/50 hover:border-primary/40 hover:shadow-[0_0_10px_-3px_hsl(var(--primary)/0.3)] transition-all duration-300"
                 >
                   {skill}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>

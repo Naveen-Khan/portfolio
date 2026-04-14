@@ -6,20 +6,30 @@ const experiences = [
     role: "AI Engineer Intern",
     company: "Civil Aviation Authority Pakistan",
     points: [
-      "Built enterprise conversational AI system with RAG retrieval pipelines",
-      "Indexed 100+ internal documents using FAISS vector store",
-      "Improved workflow efficiency by 60% through automated query resolution",
+      "Built conversational automation system for internal operations",
+      "Worked on document indexing pipelines for efficient retrieval",
+      "Improved internal workflow efficiency through AI-based automation",
+      "Supported AI-driven operational automation initiatives",
     ],
   },
   {
     role: "AI Engineer Intern",
     company: "Itsolera Pvt Ltd",
     points: [
-      "Trained DenseNet121 CNN for medical image classification",
-      "Built end-to-end diagnostic pipeline with data augmentation",
-      "Deployed Streamlit-based clinician diagnostic tool",
+      "Built DenseNet medical image classification system",
+      "Performed dataset augmentation to improve model robustness",
+      "Improved validation accuracy through training optimization",
+      "Built Streamlit-based prediction interface for clinicians",
     ],
   },
+];
+
+const certs = [
+  "IEEE Membership",
+  "Engineering Alert Workshop",
+  "AI Intern — Civil Aviation Authority Pakistan",
+  "AI Intern — Itsolera Pvt Ltd",
+  "2D Animation Course — TIF Hacks Institution",
 ];
 
 const achievements = [
@@ -60,10 +70,31 @@ const ExperienceSection = () => (
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="glass-card p-6"
+        className="glass-card p-6 mb-16"
       >
         {achievements.map((a) => (
-          <p key={a} className="text-sm text-foreground/80 mb-2">{a}</p>
+          <p key={a} className="text-sm text-foreground/80 mb-2 last:mb-0">{a}</p>
+        ))}
+      </motion.div>
+
+      <SectionHeading title="Certifications" />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="flex flex-wrap gap-2 justify-center"
+      >
+        {certs.map((c, i) => (
+          <motion.span
+            key={c}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.3, delay: i * 0.05 }}
+            className="glass-card text-xs px-3 py-1.5 text-foreground/70 border border-border/50 hover:border-primary/40 transition-colors"
+          >
+            {c}
+          </motion.span>
         ))}
       </motion.div>
     </div>

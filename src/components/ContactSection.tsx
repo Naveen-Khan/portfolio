@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiMail, HiPhone } from "react-icons/hi";
+import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -38,6 +38,13 @@ const ContactSection = () => {
               <div>
                 <p className="text-xs text-muted-foreground">Phone</p>
                 <p className="text-sm text-foreground">+92 XXX XXXXXXX</p>
+              </div>
+            </div>
+            <div className="glass-card p-4 flex items-center gap-3">
+              <HiLocationMarker className="text-primary text-xl" />
+              <div>
+                <p className="text-xs text-muted-foreground">Location</p>
+                <p className="text-sm text-foreground">Karachi, Pakistan</p>
               </div>
             </div>
             <div className="flex gap-3">

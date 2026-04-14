@@ -12,9 +12,14 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <p className="text-sm font-mono-code text-primary mb-4 tracking-widest uppercase">
+          <motion.p
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-sm font-mono-code text-primary mb-4 tracking-widest uppercase"
+          >
             &lt;Hello World /&gt;
-          </p>
+          </motion.p>
           <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold mb-4 glow-text text-primary">
             Naveen Khan
           </h1>
@@ -26,8 +31,6 @@ const HeroSection = () => {
                 "Machine Learning Developer",
                 2000,
                 "Computer Vision Engineer",
-                2000,
-                "LLM Engineer",
                 2000,
               ]}
               wrapper="span"
@@ -54,14 +57,14 @@ const HeroSection = () => {
           <a href="#contact" className="glass-card card-hover-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-foreground transition-all">
             <HiMail className="text-base" /> Contact Me
           </a>
+          <a href="#" className="glass-card card-hover-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-foreground transition-all">
+            <HiDownload /> Download Resume
+          </a>
           <a href="https://github.com/Naveen-Khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaGithub />
           </a>
           <a href="https://www.linkedin.com/in/naveen-khan" target="_blank" rel="noopener noreferrer" className="glass-card card-hover-glow inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm text-foreground transition-all">
             <FaLinkedin />
-          </a>
-          <a href="#" className="glass-card card-hover-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm text-foreground transition-all">
-            <HiDownload /> Resume
           </a>
         </motion.div>
       </div>
