@@ -30,14 +30,14 @@ const ContactSection = () => {
               <HiMail className="text-primary text-xl" />
               <div>
                 <p className="text-xs text-muted-foreground">Email</p>
-                <p className="text-sm text-foreground">naveenkhan@email.com</p>
+                <p className="text-sm text-foreground">naveenkhan0059@gmail.com</p>
               </div>
             </div>
             <div className="glass-card p-4 flex items-center gap-3">
               <HiPhone className="text-primary text-xl" />
               <div>
                 <p className="text-xs text-muted-foreground">Phone</p>
-                <p className="text-sm text-foreground">+92 XXX XXXXXXX</p>
+                <p className="text-sm text-foreground">+92 301 3586403</p>
               </div>
             </div>
             <div className="glass-card p-4 flex items-center gap-3">
