@@ -10,6 +10,9 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const subject = encodeURIComponent(`Portfolio Contact from ${form.name}`);
+    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`);
+    window.open(`mailto:naveenkhan0059@gmail.com?subject=${subject}&body=${body}`, '_self');
     setSubmitted(true);
     setForm({ name: "", email: "", message: "" });
     setTimeout(() => setSubmitted(false), 3000);
