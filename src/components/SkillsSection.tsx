@@ -8,7 +8,7 @@ const skillGroups = [
   },
   {
     title: "Machine Learning",
-    skills: ["Machine Learning", "Computer Vision", "Model Evaluation Metrics", "Data Augmentation", "Data Annotation"],
+    skills: ["Machine Learning", "Computer Vision", "RAG Pipeline", "LLM API", "Model Evaluation Metrics", "Data Augmentation", "Data Annotation"],
   },
   {
     title: "Frameworks",
