@@ -3,7 +3,7 @@ import SectionHeading from "./SectionHeading";
 import { HiLightningBolt, HiShieldCheck, HiEye, HiChartBar } from "react-icons/hi";
 
 const highlights = [
-  { icon: HiLightningBolt, text: "Reduced internal query processing time through AI automation" },
+  { icon: HiLightningBolt, text: "Built intelligent chatbot systems using RAG pipelines and LLM APIs" },
   { icon: HiShieldCheck, text: "Built high-accuracy medical classification model with DenseNet" },
   { icon: HiEye, text: "Developed real-time safety monitoring system using YOLO" },
   { icon: HiChartBar, text: "Built automated infrastructure inspection solution with computer vision" },
