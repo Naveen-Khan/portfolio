@@ -46,7 +46,7 @@ const ParticleBackground = () => {
       particles.forEach((p) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "hsl(170 100% 50% / 0.6)";
+        ctx.fillStyle = "hsl(84 100% 58% / 0.7)";
         ctx.fill();
 
         // Update position
@@ -62,7 +62,7 @@ const ParticleBackground = () => {
 
       // Draw connections
       const connectionDist = 120;
-      ctx.strokeStyle = "hsl(170 100% 50% / 0.15)";
+      ctx.strokeStyle = "hsl(84 100% 58% / 0.18)";
       ctx.lineWidth = 1;
 
       for (let i = 0; i < particles.length; i++) {
@@ -73,7 +73,7 @@ const ParticleBackground = () => {
 
           if (dist < connectionDist) {
             const opacity = (1 - dist / connectionDist) * 0.15;
-            ctx.strokeStyle = `hsl(170 100% 50% / ${opacity})`;
+            ctx.strokeStyle = `hsl(84 100% 58% / ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -107,7 +107,7 @@ const ParticleBackground = () => {
         <div 
           className="absolute w-[600px] h-[600px] rounded-full opacity-20 animate-pulse"
           style={{
-            background: "radial-gradient(circle, hsl(170 100% 50%) 0%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(84 100% 58%) 0%, transparent 70%)",
             top: "10%",
             left: "20%",
             animation: "float 20s ease-in-out infinite",
@@ -116,7 +116,7 @@ const ParticleBackground = () => {
         <div 
           className="absolute w-[400px] h-[400px] rounded-full opacity-15"
           style={{
-            background: "radial-gradient(circle, hsl(280 80% 60%) 0%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(100 100% 50%) 0%, transparent 70%)",
             bottom: "20%",
             right: "10%",
             animation: "float 25s ease-in-out infinite reverse",
@@ -125,7 +125,7 @@ const ParticleBackground = () => {
         <div 
           className="absolute w-[300px] h-[300px] rounded-full opacity-10"
           style={{
-            background: "radial-gradient(circle, hsl(200 100% 60%) 0%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(70 100% 55%) 0%, transparent 70%)",
             top: "50%",
             right: "30%",
             animation: "float 18s ease-in-out infinite",
@@ -145,8 +145,8 @@ const ParticleBackground = () => {
         className="absolute inset-0"
         style={{
           backgroundImage: `
-            linear-gradient(hsl(170 100% 50% / 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(170 100% 50% / 0.03) 1px, transparent 1px)
+            linear-gradient(hsl(84 100% 58% / 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(84 100% 58% / 0.04) 1px, transparent 1px)
           `,
           backgroundSize: "50px 50px",
         }}
