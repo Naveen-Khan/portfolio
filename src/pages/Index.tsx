@@ -8,18 +8,22 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const Index = () => (
   <div className="relative min-h-screen neural-grid">
+    <ScrollProgress />
+    <CustomCursor />
     <ParticleBackground />
     <Navbar />
     <main className="relative z-10">
       <HeroSection />
       <AboutSection />
-      <EducationSection />
       <SkillsSection />
       <ProjectsSection />
       <ExperienceSection />
+      <EducationSection />
       <ContactSection />
     </main>
     <Footer />
