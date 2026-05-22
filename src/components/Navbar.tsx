@@ -1,80 +1,129 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { HiUser, HiSparkles, HiBriefcase, HiAcademicCap, HiFolder, HiMail } from "react-icons/hi";
 
 const navLinks = [
-  { label: "About", href: "#about", icon: HiUser, span: "col-span-2" },
-  { label: "Skills", href: "#skills", icon: HiSparkles, span: "col-span-1" },
-  { label: "Projects", href: "#projects", icon: HiFolder, span: "col-span-1" },
-  { label: "Experience", href: "#experience", icon: HiBriefcase, span: "col-span-1" },
-  { label: "Education", href: "#education", icon: HiAcademicCap, span: "col-span-1" },
-  { label: "Contact", href: "#contact", icon: HiMail, span: "col-span-2" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#about");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 30);
+      const ids = navLinks.map((l) => l.href.slice(1));
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 140 && rect.bottom >= 140) {
+          setActive(`#${id}`); break;
+        }
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed top-3 left-3 right-3 z-50"
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+      className="fixed top-4 left-4 right-4 z-50"
     >
-      <div className="max-w-6xl mx-auto glass-card border border-border/50 backdrop-blur-2xl px-3 py-2 rounded-2xl">
-        <div className="flex items-center justify-between gap-3">
-          <a href="#" className="font-display text-lg font-bold text-primary glow-text px-3 py-2 glass-card rounded-xl border border-primary/30">
-            NK
+      <div
+        className={`max-w-5xl mx-auto px-5 py-3 rounded-full border transition-all duration-500 ${
+          scrolled ? "border-copper/30 shadow-[0_8px_40px_-12px_hsl(25_78%_55%_/_0.35)]" : "border-border/40"
+        }`}
+        style={{
+          background: scrolled
+            ? "linear-gradient(135deg, hsl(24 18% 6% / 0.85), hsl(20 25% 9% / 0.6))"
+            : "linear-gradient(135deg, hsl(24 18% 6% / 0.6), hsl(20 25% 9% / 0.35))",
+          backdropFilter: "blur(28px) saturate(1.4)",
+        }}
+      >
+        <div className="flex items-center justify-between gap-6">
+          <a href="#" className="flex items-center gap-2 group">
+            <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-copper-glow via-copper to-bronze flex items-center justify-center font-display font-bold text-background text-sm">
+              NK
+              <div className="absolute inset-0 rounded-full bg-copper-glow/40 blur-md group-hover:blur-lg transition-all" />
+            </div>
+            <span className="hidden sm:block font-display text-base tracking-wide gradient-text">Naveen Khan</span>
           </a>
-          <div className="hidden md:grid grid-cols-8 gap-2 flex-1 max-w-3xl">
-            {navLinks.map((l, i) => {
-              const Icon = l.icon;
+
+          <ul className="hidden md:flex items-center gap-1">
+            {navLinks.map((l) => {
+              const isActive = active === l.href;
               return (
-                <motion.a
-                  key={l.href}
-                  href={l.href}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.05 + 0.2 }}
-                  className={`${l.span} group relative flex items-center justify-center gap-2 px-3 py-2 rounded-xl glass-card border border-border/40 text-sm text-muted-foreground hover:text-primary hover:border-primary/50 card-hover-glow transition-all`}
-                >
-                  <Icon className="text-base group-hover:scale-110 transition-transform" />
-                  <span className="font-medium">{l.label}</span>
-                </motion.a>
+                <li key={l.href} className="relative">
+                  <a
+                    href={l.href}
+                    className={`relative px-4 py-2 text-xs uppercase tracking-[0.18em] font-medium transition-colors ${
+                      isActive ? "text-copper-glow" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        className="absolute inset-0 -z-10 rounded-full border border-copper/40"
+                        style={{ background: "linear-gradient(135deg, hsl(25 78% 55% / 0.18), hsl(30 55% 42% / 0.1))" }}
+                      />
+                    )}
+                  </a>
+                </li>
               );
             })}
-          </div>
+          </ul>
+
+          <a
+            href="#contact"
+            className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] px-4 py-2 rounded-full text-background font-semibold bg-gradient-to-r from-copper-glow via-copper to-bronze hover:shadow-[0_0_30px_-5px_hsl(25_78%_55%_/_0.7)] transition-all"
+          >
+            Let's Talk
+          </a>
+
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden text-foreground glass-card p-2 rounded-xl border border-border/40"
+            className="md:hidden text-foreground p-2 rounded-full border border-border/50"
+            aria-label="Toggle menu"
           >
             {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
           </button>
         </div>
+
         <AnimatePresence>
           {open && (
             <motion.div
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              className="md:hidden overflow-hidden mt-2"
+              className="md:hidden overflow-hidden mt-3"
             >
-              <div className="grid grid-cols-2 gap-2 pt-2">
-                {navLinks.map((l) => {
-                  const Icon = l.icon;
-                  return (
+              <ul className="flex flex-col gap-1 pt-2 border-t border-border/40">
+                {navLinks.map((l) => (
+                  <li key={l.href}>
                     <a
-                      key={l.href}
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="flex items-center gap-2 px-3 py-3 rounded-xl glass-card border border-border/40 text-sm text-muted-foreground hover:text-primary"
+                      className="block px-4 py-3 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-copper-glow"
                     >
-                      <Icon /> {l.label}
+                      {l.label}
                     </a>
-                  );
-                })}
-              </div>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,24 +1,17 @@
 import { useEffect, useRef } from "react";
 
-/* ── CSS Particle Background ── */
 const ParticleBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animationId: number;
-    let particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      size: number;
-    }> = [];
+    let animationId = 0;
+    type P = { x: number; y: number; vx: number; vy: number; size: number; life: number };
+    let particles: P[] = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -27,61 +20,37 @@ const ParticleBackground = () => {
 
     const createParticles = () => {
       particles = [];
-      const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
+      const count = Math.min(70, Math.floor((canvas.width * canvas.height) / 22000));
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          size: Math.random() * 2 + 1,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: -Math.random() * 0.35 - 0.05,
+          size: Math.random() * 1.6 + 0.4,
+          life: Math.random(),
         });
       }
     };
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Draw particles
       particles.forEach((p) => {
+        const alpha = 0.25 + Math.sin(p.life) * 0.25;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "hsl(170 100% 50% / 0.6)";
+        ctx.fillStyle = `hsl(30 90% 65% / ${alpha})`;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = "hsl(25 78% 55% / 0.7)";
         ctx.fill();
-
-        // Update position
         p.x += p.vx;
         p.y += p.vy;
-
-        // Wrap around edges
+        p.life += 0.01;
+        if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
         if (p.x < 0) p.x = canvas.width;
         if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
       });
-
-      // Draw connections
-      const connectionDist = 120;
-      ctx.strokeStyle = "hsl(170 100% 50% / 0.15)";
-      ctx.lineWidth = 1;
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < connectionDist) {
-            const opacity = (1 - dist / connectionDist) * 0.15;
-            ctx.strokeStyle = `hsl(170 100% 50% / ${opacity})`;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
+      ctx.shadowBlur = 0;
       animationId = requestAnimationFrame(draw);
     };
 
@@ -89,66 +58,55 @@ const ParticleBackground = () => {
     createParticles();
     draw();
 
-    window.addEventListener("resize", () => {
-      resize();
-      createParticles();
-    });
-
+    const onResize = () => { resize(); createParticles(); };
+    window.addEventListener("resize", onResize);
     return () => {
       cancelAnimationFrame(animationId);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
-      {/* Animated gradient orbs */}
       <div className="absolute inset-0">
-        <div 
-          className="absolute w-[600px] h-[600px] rounded-full opacity-20 animate-pulse"
+        <div
+          className="absolute w-[700px] h-[700px] rounded-full opacity-30"
           style={{
-            background: "radial-gradient(circle, hsl(170 100% 50%) 0%, transparent 70%)",
-            top: "10%",
-            left: "20%",
-            animation: "float 20s ease-in-out infinite",
+            background: "radial-gradient(circle, hsl(25 78% 55% / 0.5) 0%, transparent 70%)",
+            top: "5%", left: "10%",
+            animation: "drift 28s ease-in-out infinite",
+            filter: "blur(40px)",
           }}
         />
-        <div 
-          className="absolute w-[400px] h-[400px] rounded-full opacity-15"
+        <div
+          className="absolute w-[500px] h-[500px] rounded-full opacity-25"
           style={{
-            background: "radial-gradient(circle, hsl(280 80% 60%) 0%, transparent 70%)",
-            bottom: "20%",
-            right: "10%",
-            animation: "float 25s ease-in-out infinite reverse",
+            background: "radial-gradient(circle, hsl(30 55% 42% / 0.6) 0%, transparent 70%)",
+            bottom: "10%", right: "5%",
+            animation: "drift 34s ease-in-out infinite reverse",
+            filter: "blur(50px)",
           }}
         />
-        <div 
-          className="absolute w-[300px] h-[300px] rounded-full opacity-10"
+        <div
+          className="absolute w-[420px] h-[420px] rounded-full opacity-15"
           style={{
-            background: "radial-gradient(circle, hsl(200 100% 60%) 0%, transparent 70%)",
-            top: "50%",
-            right: "30%",
-            animation: "float 18s ease-in-out infinite",
+            background: "radial-gradient(circle, hsl(20 40% 25% / 0.7) 0%, transparent 70%)",
+            top: "55%", left: "45%",
+            animation: "drift 22s ease-in-out infinite",
+            filter: "blur(60px)",
           }}
         />
       </div>
-
-      {/* Neural network canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ opacity: 0.7 }}
-      />
-
-      {/* Grid overlay */}
-      <div 
-        className="absolute inset-0"
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.8 }} />
+      <div
+        className="absolute inset-0 opacity-40"
         style={{
           backgroundImage: `
-            linear-gradient(hsl(170 100% 50% / 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(170 100% 50% / 0.03) 1px, transparent 1px)
+            linear-gradient(hsl(25 78% 55% / 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, hsl(25 78% 55% / 0.04) 1px, transparent 1px)
           `,
-          backgroundSize: "50px 50px",
+          backgroundSize: "70px 70px",
+          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 80%)",
         }}
       />
     </div>
