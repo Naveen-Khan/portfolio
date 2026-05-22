@@ -2,10 +2,22 @@ import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiDownload, HiMail, HiArrowDown } from "react-icons/hi";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-16">
+    <section className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden">
+      <div className="absolute inset-0 z-0">
+        <img
+          src={heroBg}
+          alt="AI neural network background"
+          width={1920}
+          height={1080}
+          className="w-full h-full object-cover opacity-40"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/40 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+      </div>
       <div className="section-container relative z-10 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
