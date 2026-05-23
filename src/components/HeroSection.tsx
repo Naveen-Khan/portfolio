@@ -126,12 +126,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40, filter: "blur(20px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-          className="font-display font-bold leading-[0.92] tracking-tight"
+          className="font-display font-bold leading-[0.95] tracking-tight"
         >
-          <span className="block text-5xl sm:text-7xl lg:text-8xl xl:text-9xl gradient-text-warm glow-text">
+          <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl gradient-text-warm glow-text">
             Naveen
           </span>
-          <span className="block text-5xl sm:text-7xl lg:text-8xl xl:text-9xl text-foreground/95 mt-1 italic font-serif">
+          <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-foreground/95 mt-1 italic font-serif">
             Khan<span className="text-copper">.</span>
           </span>
         </motion.h1>
@@ -210,7 +210,7 @@ const HeroSection = () => {
               <FaGithub />
             </a>
             <a
-              href="https://www.linkedin.com/in/naveenkhan-ai"
+              href="https://www.linkedin.com/in/naveen-khan-ai"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

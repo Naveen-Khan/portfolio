@@ -111,13 +111,13 @@ const Navbar = () => {
               exit={{ height: 0, opacity: 0 }}
               className="md:hidden overflow-hidden mt-3"
             >
-              <ul className="flex flex-col gap-1 pt-2 border-t border-border/40">
+              <ul className="flex flex-col gap-1 pt-2 border-t border-border/40 text-center">
                 {navLinks.map((l) => (
                   <li key={l.href}>
                     <a
                       href={l.href}
                       onClick={() => setOpen(false)}
-                      className="block px-4 py-3 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-copper-glow"
+                      className="block px-4 py-3 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-copper-glow text-center"
                     >
                       {l.label}
                     </a>

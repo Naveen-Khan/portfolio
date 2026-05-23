@@ -163,7 +163,7 @@ const ContactSection = () => {
                 className="flex-1 glass-card card-hover-glow p-4 rounded-2xl flex items-center justify-center gap-2 text-sm">
                 <FaGithub className="text-lg text-copper-glow" /> GitHub
               </a>
-              <a href="https://www.linkedin.com/in/naveenkhan-ai" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.linkedin.com/in/naveen-khan-ai" target="_blank" rel="noopener noreferrer"
                 className="flex-1 glass-card card-hover-glow p-4 rounded-2xl flex items-center justify-center gap-2 text-sm">
                 <FaLinkedin className="text-lg text-copper-glow" /> LinkedIn
               </a>

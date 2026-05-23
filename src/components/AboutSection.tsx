@@ -38,7 +38,7 @@ const AboutSection = () => (
             <div className="absolute top-4 left-4 w-12 h-12 border-l-2 border-t-2 border-copper/70 rounded-tl-2xl" />
             <div className="absolute bottom-4 right-4 w-12 h-12 border-r-2 border-b-2 border-copper/70 rounded-br-2xl" />
             <div className="absolute bottom-6 left-6 right-6">
-              <p className="font-serif-italic text-copper-glow text-sm mb-1">— Engineer & Storyteller</p>
+              <p className="font-serif-italic text-copper-glow text-sm mb-1">— AI / ML Engineer & Storyteller</p>
               <p className="font-display text-2xl text-foreground">Naveen Khan</p>
             </div>
           </div>
