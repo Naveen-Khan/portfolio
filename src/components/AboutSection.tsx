@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import portrait from "@/assets/about-portrait.jpg";
+import portrait from "@/assets/my_pic.png";
 import { HiLightningBolt, HiShieldCheck, HiEye, HiChartBar } from "react-icons/hi";
 
 const highlights = [
@@ -19,7 +19,7 @@ const AboutSection = () => (
       style={{ background: "radial-gradient(circle, hsl(30 55% 42% / 0.6), transparent 70%)", filter: "blur(70px)", animation: "drift 22s ease-in-out infinite reverse" }} />
 
     <div className="section-container relative z-10">
-      <SectionHeading eyebrow="01 — Origin Story" title="About Me" subtitle="Turning complex problems into intelligent, cinematic solutions" />
+      <SectionHeading eyebrow="01 — Origin Story" title="About Me" subtitle="Turning complex problems into intelligent, elegant solutions" variant="split" />
 
       <div className="grid lg:grid-cols-12 gap-10 items-center max-w-6xl mx-auto">
         {/* Portrait card */}

@@ -50,7 +50,7 @@ const ExperienceSection = () => (
     ))}
 
     <div className="section-container relative z-10 max-w-4xl">
-      <SectionHeading eyebrow="04 — Journey" title="Where I've Worked" subtitle="Industry experience that shaped the craft" />
+      <SectionHeading eyebrow="04 — Journey" title="Where I've Worked" subtitle="Industry experience that shaped the craft" variant="slide" />
 
       <div className="relative">
         {/* vertical glowing line */}

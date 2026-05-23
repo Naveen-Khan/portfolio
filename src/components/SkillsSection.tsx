@@ -4,7 +4,9 @@ import {
   SiPython, SiCplusplus, SiTensorflow, SiKeras, SiScikitlearn, SiNumpy,
   SiOpencv, SiMysql, SiHtml5, SiCss, SiJavascript, SiPhp,
   SiGit, SiGithub, SiDocker, SiStreamlit, SiJupyter,
+  SiPandas,
 } from "react-icons/si";
+import { TbChartHistogram, TbChartDots } from "react-icons/tb";
 import { DiDatabase } from "react-icons/di";
 import { HiSparkles } from "react-icons/hi";
 
@@ -34,6 +36,9 @@ const skillGroups = [
       { name: "Keras", Icon: SiKeras },
       { name: "Scikit-learn", Icon: SiScikitlearn },
       { name: "NumPy", Icon: SiNumpy },
+      { name: "Pandas", Icon: SiPandas },
+      { name: "Matplotlib", Icon: TbChartHistogram },
+      { name: "Seaborn", Icon: TbChartDots },
       { name: "OpenCV", Icon: SiOpencv },
     ],
   },
@@ -77,7 +82,7 @@ const SkillsSection = () => (
     </div>
 
     <div className="section-container relative z-10">
-      <SectionHeading eyebrow="02 — Toolkit" title="Tech Stack" subtitle="The instruments behind the craft" />
+      <SectionHeading eyebrow="02 — Toolkit" title="Tech Stack" subtitle="The instruments behind the craft" variant="float" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
         {skillGroups.map((group, gi) => (
