@@ -120,7 +120,7 @@ const ProjectsSection = () => (
     <div className="absolute top-1/3 left-0 w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none"
       style={{ background: "radial-gradient(circle, hsl(25 78% 55% / 0.5), transparent 70%)", filter: "blur(100px)" }} />
     <div className="section-container relative z-10">
-      <SectionHeading eyebrow="03 — Selected Work" title="What I've Built" subtitle="Case studies in applied intelligence" />
+      <SectionHeading eyebrow="03 — Selected Work" title="What I've Built" subtitle="Case studies in applied intelligence" variant="zoom" />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
         {projects.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
       </div>

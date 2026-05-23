@@ -117,7 +117,7 @@ const HeroSection = () => {
         >
           <span className="h-px w-12 bg-gradient-to-r from-transparent to-copper" />
           <p className="font-serif-italic text-copper-glow tracking-widest text-sm sm:text-base">
-            a portfolio in motion
+            build future with AI
           </p>
           <span className="h-px w-12 bg-gradient-to-l from-transparent to-copper" />
         </motion.div>
@@ -152,7 +152,7 @@ const HeroSection = () => {
                 2000,
                 "Computer Systems Engineer",
                 2000,
-                "Cinematic Problem Solver",
+                "Creative Problem Solver",
                 2000,
               ]}
               wrapper="span"
@@ -222,16 +222,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-copper-glow/60"
-      >
-        <span className="text-[10px] uppercase tracking-[0.3em]">scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-copper-glow/60 to-transparent" />
-      </motion.div>
     </section>
   );
 };

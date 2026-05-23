@@ -13,7 +13,7 @@ const EducationSection = () => (
       style={{ background: "radial-gradient(circle, hsl(30 55% 42% / 0.6), transparent 70%)", filter: "blur(80px)" }} />
 
     <div className="section-container relative z-10 max-w-6xl">
-      <SectionHeading eyebrow="05 — Foundation" title="Education" subtitle="Where curiosity was sharpened into engineering" />
+      <SectionHeading eyebrow="05 — Foundation" title="Education" subtitle="Where curiosity was sharpened into engineering" variant="rotate3d" />
 
       <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
         {/* main degree card */}

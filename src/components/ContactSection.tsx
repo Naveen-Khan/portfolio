@@ -35,7 +35,7 @@ const ContactSection = () => {
         style={{ background: "radial-gradient(circle, hsl(30 90% 65% / 0.5), transparent 70%)", filter: "blur(80px)", animation: "drift 25s ease-in-out infinite reverse" }} />
 
       <div className="section-container relative z-10 max-w-5xl">
-        <SectionHeading eyebrow="06 — Get In Touch" title="Let's Create Together" subtitle="Have a project, idea or collaboration? The studio is open." />
+        <SectionHeading eyebrow="06 — Get In Touch" title="Let's Create Together" subtitle="Have a project, idea or collaboration? The studio is open." variant="neon" />
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           <motion.div
