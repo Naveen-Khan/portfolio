@@ -53,21 +53,43 @@ const ContactSection = () => {
     setStatus("sending");
     try {
       const now = new Date();
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          reply_to: form.email,
-          subject: form.subject,
-          message: form.message,
-          submitted_at: now.toLocaleString(),
-          user_agent: navigator.userAgent,
-          to_email: "naveenkhan0059@gmail.com",
-        },
-        { publicKey: PUBLIC_KEY }
-      );
+      const timeStr = now.toLocaleString();
+      const templateParams = {
+        name: form.name,
+        email: form.email,
+        subject: form.subject,
+        message: form.message,
+        time: timeStr,
+        from_name: form.name,
+        from_email: form.email,
+        reply_to: form.email,
+        submitted_at: timeStr,
+        user_agent: navigator.userAgent,
+        to_email: "naveenkhan0059@gmail.com",
+      };
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, { publicKey: PUBLIC_KEY });
+      // Auto-reply to visitor
+      try {
+        await emailjs.send(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          {
+            ...templateParams,
+            to_email: form.email,
+            name: "Naveen Khan",
+            email: "naveenkhan0059@gmail.com",
+            from_name: "Naveen Khan",
+            from_email: "naveenkhan0059@gmail.com",
+            reply_to: "naveenkhan0059@gmail.com",
+            subject: "Thank You For Contacting Me",
+            message:
+              "Your message has been received successfully. I will contact you soon.\n\n— Naveen Khan",
+          },
+          { publicKey: PUBLIC_KEY }
+        );
+      } catch (autoErr) {
+        console.warn("Auto-reply failed:", autoErr);
+      }
       setStatus("success");
       setForm(initialForm);
       setTimeout(() => setStatus("idle"), 4500);
