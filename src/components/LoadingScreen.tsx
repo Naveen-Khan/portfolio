@@ -35,10 +35,10 @@ const LoadingScreen = ({ onComplete }: Props) => {
     return () => clearInterval(id);
   }, []);
 
-  // Progress
+  // Progress — fills 0→100 over exactly 3s
   useEffect(() => {
     const start = performance.now();
-    const DURATION = 2600;
+    const DURATION = 3000;
     let raf = 0;
     const tick = (t: number) => {
       const p = Math.min(1, (t - start) / DURATION);
@@ -46,8 +46,8 @@ const LoadingScreen = ({ onComplete }: Props) => {
       setProgress(Math.round(eased * 100));
       if (p < 1) raf = requestAnimationFrame(tick);
       else {
-        setTimeout(() => setDone(true), 450);
-        setTimeout(() => onComplete(), 1250);
+        setTimeout(() => setDone(true), 50);
+        setTimeout(() => onComplete(), 550);
       }
     };
     raf = requestAnimationFrame(tick);
