@@ -63,41 +63,18 @@ const ContactSection = () => {
         from_name: form.name,
         from_email: form.email,
         reply_to: form.email,
-        submitted_at: timeStr,
-        user_agent: navigator.userAgent,
-        to_email: "naveenkhan0059@gmail.com",
+        to_email: form.email, // used as Reply-To in your EmailJS template
       };
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, { publicKey: PUBLIC_KEY });
-      // Auto-reply to visitor
-      try {
-        await emailjs.send(
-          SERVICE_ID,
-          TEMPLATE_ID,
-          {
-            ...templateParams,
-            to_email: form.email,
-            name: "Naveen Khan",
-            email: "naveenkhan0059@gmail.com",
-            from_name: "Naveen Khan",
-            from_email: "naveenkhan0059@gmail.com",
-            reply_to: "naveenkhan0059@gmail.com",
-            subject: "Thank You For Contacting Me",
-            message:
-              "Your message has been received successfully. I will contact you soon.\n\n— Naveen Khan",
-          },
-          { publicKey: PUBLIC_KEY }
-        );
-      } catch (autoErr) {
-        console.warn("Auto-reply failed:", autoErr);
-      }
       setStatus("success");
       setForm(initialForm);
       setTimeout(() => setStatus("idle"), 4500);
     } catch (err: unknown) {
       console.error("EmailJS error:", err);
-      setErrorMsg("Couldn't send right now. Please try again or email directly.");
+      const msg = err instanceof Error ? err.message : typeof err === "string" ? err : "Unknown error";
+      setErrorMsg(`Couldn't send right now (${msg}). Please email me directly.`);
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 4500);
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
