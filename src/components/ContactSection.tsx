@@ -63,7 +63,7 @@ const ContactSection = () => {
         from_name: form.name,
         from_email: form.email,
         reply_to: form.email,
-        to_email: form.email, // used as Reply-To in your EmailJS template
+        to_email: "naveenkhan0059@gmail.com",
       };
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, { publicKey: PUBLIC_KEY });
       setStatus("success");
