@@ -39,7 +39,7 @@ const Index = () => {
             initial={{ opacity: 0, scale: 1.03, filter: "blur(14px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
-            className="relative min-h-screen neural-grid"
+            className="relative min-h-screen"
           >
             <ParticleBackground />
             <CursorGlow />
