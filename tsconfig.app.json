@@ -19,6 +19,9 @@
     "paths": {
       "@/*": [
         "./src/*"
+      ],
+      "framer-motion": [
+        "./src/lib/motion-shim.tsx"
       ]
     },
     "skipLibCheck": true,
