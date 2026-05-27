@@ -126,9 +126,9 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 40, filter: "blur(20px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.1, delay: 0.3, ease: [0.2, 0.8, 0.2, 1] }}
-          className="font-display font-bold leading-[0.95] tracking-tight"
+          className="font-display font-bold leading-[0.95] tracking-tight animate-hero-reveal"
         >
-          <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl gradient-text-warm glow-text">
+          <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl gradient-text-warm glow-text animate-pulse-glow-soft">
             Naveen
           </span>
           <span className="block text-4xl sm:text-5xl lg:text-6xl xl:text-7xl text-foreground/95 mt-1 italic font-serif">
