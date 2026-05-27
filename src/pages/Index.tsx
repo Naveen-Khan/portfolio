@@ -42,6 +42,14 @@ const Index = () => {
             className="relative min-h-screen"
           >
             <ParticleBackground />
+            {/* Cinematic ambient lighting */}
+            <div aria-hidden className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+              <div className="mesh-gradient" />
+              <div className="ambient-orb ambient-orb-amber animate-orb-drift w-[480px] h-[480px] -top-32 -left-24" />
+              <div className="ambient-orb ambient-orb-crimson animate-orb-drift w-[420px] h-[420px] top-1/3 -right-32" style={{ animationDelay: "-7s" }} />
+              <div className="ambient-orb ambient-orb-purple animate-orb-drift w-[520px] h-[520px] bottom-0 left-1/4" style={{ animationDelay: "-12s" }} />
+              <div className="ambient-orb ambient-orb-gold animate-orb-drift w-[360px] h-[360px] top-2/3 right-1/4" style={{ animationDelay: "-4s" }} />
+            </div>
             <CursorGlow />
             <Navbar />
             <main className="relative z-10">
