@@ -192,3 +192,58 @@
   color: transparent;
   animation: shine 4s linear infinite;
 }
+
+/* Cinematic heading effects */
+@keyframes neon-flicker {
+  0%, 100% {
+    text-shadow:
+      0 0 10px hsl(var(--copper-glow) / 0.8),
+      0 0 25px hsl(var(--copper) / 0.6),
+      0 0 50px hsl(var(--copper) / 0.35);
+  }
+  45% {
+    text-shadow:
+      0 0 22px hsl(var(--copper-glow) / 1),
+      0 0 50px hsl(var(--copper) / 0.9),
+      0 0 90px hsl(var(--copper) / 0.55);
+  }
+  47% { text-shadow: none; }
+  48% {
+    text-shadow:
+      0 0 12px hsl(var(--copper-glow) / 0.9),
+      0 0 30px hsl(var(--copper) / 0.7);
+  }
+  85% {
+    text-shadow:
+      0 0 18px hsl(var(--copper-glow) / 0.95),
+      0 0 40px hsl(var(--copper) / 0.8);
+  }
+}
+.animate-neon-flicker {
+  animation: neon-flicker 3.6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-soft {
+  0%, 100% {
+    text-shadow:
+      0 0 25px hsl(var(--copper-glow) / 0.45),
+      0 0 55px hsl(var(--copper) / 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 40px hsl(var(--copper-glow) / 0.75),
+      0 0 90px hsl(var(--copper) / 0.45);
+  }
+}
+.animate-pulse-glow-soft {
+  animation: pulse-glow-soft 4s ease-in-out infinite;
+}
+
+@keyframes hero-reveal {
+  0%   { opacity: 0; transform: translateY(40px) scale(1.06); filter: blur(22px); }
+  60%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+.animate-hero-reveal {
+  animation: hero-reveal 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
