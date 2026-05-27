@@ -44,6 +44,16 @@
     --bronze: 30 55% 42%;
     --cocoa: 20 25% 12%;
 
+    /* Cinematic multi-color accents */
+    --gold: 42 85% 60%;
+    --gold-glow: 45 95% 70%;
+    --amber: 35 95% 58%;
+    --orange-glow: 20 95% 58%;
+    --crimson: 358 70% 50%;
+    --crimson-glow: 5 80% 60%;
+    --purple-ambient: 270 50% 45%;
+    --purple-glow: 280 70% 65%;
+
     --glass-bg: 24 18% 7%;
     --glass-border: 25 30% 22%;
 
