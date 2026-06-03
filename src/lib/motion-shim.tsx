@@ -81,7 +81,8 @@ function createMotionComponent(tag: string) {
 export const motion: any = new Proxy(
   {},
   {
-    get: (_t, prop: string) => {
+    get: (_t, prop: any) => {
+      if (typeof prop !== "string") return undefined;
       if (prop === "custom") {
         return (Component: any) =>
           React.forwardRef<any, any>(({ children, ...rest }, ref) =>
