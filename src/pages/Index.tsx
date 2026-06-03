@@ -12,6 +12,7 @@ import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import BackToTop from "@/components/BackToTop";
 
 const Index = () => {
   // Only show loading screen on first visit of the session
@@ -62,6 +63,7 @@ const Index = () => {
               <ContactSection />
             </main>
             <Footer />
+            <BackToTop />
           </motion.div>
         )}
       </AnimatePresence>
