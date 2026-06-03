@@ -27,10 +27,6 @@ const experiences = [
   },
 ];
 
-const achievements = [
-  "🏆  2nd Place — IEEE Computer Society Project Exhibition MUET 2025",
-  "🎖️  Leadership Recognition — Civil Aviation Training Institute, Hyderabad Airport",
-];
 
 const ExperienceSection = () => (
   <section id="experience" className="py-32 relative overflow-hidden">
