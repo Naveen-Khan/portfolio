@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import { HiBriefcase, HiStar } from "react-icons/hi";
+import { HiBriefcase } from "react-icons/hi";
 
 const experiences = [
   {
