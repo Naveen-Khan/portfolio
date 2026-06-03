@@ -88,7 +88,6 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:flex items-center gap-2">
-            <ThemeToggle />
             <a
               href="#contact"
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] px-4 py-2 rounded-full text-background font-semibold bg-gradient-to-r from-copper-glow via-copper to-bronze hover:shadow-[0_0_30px_-5px_hsl(25_78%_55%_/_0.7)] transition-all"
@@ -97,9 +96,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
-          </div>
+
 
 
           <button
