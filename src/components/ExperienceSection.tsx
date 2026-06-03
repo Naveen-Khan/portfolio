@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
-import { HiBriefcase, HiStar } from "react-icons/hi";
+import { HiBriefcase } from "react-icons/hi";
 
 const experiences = [
   {
@@ -27,10 +27,6 @@ const experiences = [
   },
 ];
 
-const achievements = [
-  "🏆  2nd Place — IEEE Computer Society Project Exhibition MUET 2025",
-  "🎖️  Leadership Recognition — Civil Aviation Training Institute, Hyderabad Airport",
-];
 
 const ExperienceSection = () => (
   <section id="experience" className="py-32 relative overflow-hidden">
@@ -92,23 +88,6 @@ const ExperienceSection = () => (
         </div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
-        className="mt-20"
-      >
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <HiStar className="text-copper-glow" />
-          <h3 className="font-display text-2xl gradient-text-warm">Milestones</h3>
-        </div>
-        <div className="glass-card glow-border p-6 sm:p-8 rounded-3xl max-w-2xl mx-auto">
-          {achievements.map((a) => (
-            <p key={a} className="text-sm text-foreground/85 py-2 border-b border-border/30 last:border-0">{a}</p>
-          ))}
-        </div>
-      </motion.div>
     </div>
   </section>
 );

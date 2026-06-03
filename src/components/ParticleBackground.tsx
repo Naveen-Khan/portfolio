@@ -160,19 +160,6 @@ const ParticleBackground = () => {
       {/* neural network canvas */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" style={{ opacity: 0.9 }} />
 
-      {/* subtle grid + vignette */}
-      <div
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: `
-            linear-gradient(hsl(25 78% 55% / 0.05) 1px, transparent 1px),
-            linear-gradient(90deg, hsl(25 78% 55% / 0.05) 1px, transparent 1px)
-          `,
-          backgroundSize: "70px 70px",
-          maskImage: "radial-gradient(ellipse at center, black 30%, transparent 85%)",
-          WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 85%)",
-        }}
-      />
     </div>
   );
 };
