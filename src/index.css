@@ -6,110 +6,112 @@
 
 @layer base {
   :root {
-    /* Luxury Brown + Black palette */
-    --background: 24 18% 4%;
-    --foreground: 30 25% 92%;
+    /* WARM AMBER EDITORIAL — DARK
+       bg #1A140F | surface #241D16 | text #F5E6D3 | muted #C4B5A0
+       accent #D4A843 | hover #E8C468 | border #3A2E24 */
+    --background: 28 25% 8%;            /* #1A140F */
+    --foreground: 33 60% 89%;           /* #F5E6D3 */
 
-    --card: 24 18% 7%;
-    --card-foreground: 30 25% 92%;
+    --card: 28 24% 12%;                 /* #241D16 */
+    --card-foreground: 33 60% 89%;
 
-    --popover: 24 18% 7%;
-    --popover-foreground: 30 25% 92%;
+    --popover: 28 24% 12%;
+    --popover-foreground: 33 60% 89%;
 
-    /* Copper */
-    --primary: 25 78% 55%;
-    --primary-foreground: 24 18% 4%;
+    /* Amber gold */
+    --primary: 42 63% 55%;              /* #D4A843 */
+    --primary-foreground: 28 25% 8%;
 
-    --secondary: 24 14% 10%;
-    --secondary-foreground: 30 25% 92%;
+    --secondary: 28 22% 14%;
+    --secondary-foreground: 33 60% 89%;
 
-    --muted: 24 12% 9%;
-    --muted-foreground: 30 12% 60%;
+    --muted: 28 20% 13%;
+    --muted-foreground: 33 22% 70%;     /* #C4B5A0 */
 
-    /* Bronze */
-    --accent: 30 55% 42%;
-    --accent-foreground: 30 25% 95%;
+    --accent: 42 63% 55%;
+    --accent-foreground: 28 25% 8%;
 
-    --destructive: 0 75% 55%;
-    --destructive-foreground: 30 25% 95%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 33 60% 89%;
 
-    --border: 25 18% 14%;
-    --input: 25 18% 14%;
-    --ring: 25 78% 55%;
+    --border: 28 24% 18%;               /* #3A2E24 */
+    --input: 28 24% 18%;
+    --ring: 42 75% 65%;                 /* #E8C468 */
 
-    --radius: 1rem;
+    --radius: 0.5rem;
 
-    --copper: 25 78% 55%;
-    --copper-glow: 30 90% 65%;
-    --bronze: 30 55% 42%;
-    --cocoa: 20 25% 12%;
+    --copper: 42 63% 55%;
+    --copper-glow: 42 75% 65%;          /* #E8C468 */
+    --bronze: 36 55% 45%;
+    --cocoa: 28 22% 12%;
 
-    /* Cinematic multi-color accents */
-    --gold: 42 85% 60%;
-    --gold-glow: 45 95% 70%;
-    --amber: 35 95% 58%;
-    --orange-glow: 20 95% 58%;
-    --crimson: 25 78% 55%;
-    --crimson-glow: 30 90% 65%;
-    --purple-ambient: 30 55% 42%;
-    --purple-glow: 35 95% 58%;
+    --gold: 42 63% 55%;
+    --gold-glow: 42 75% 65%;
+    --amber: 38 70% 55%;
+    --orange-glow: 36 75% 58%;
+    --crimson: 42 63% 55%;
+    --crimson-glow: 42 75% 65%;
+    --purple-ambient: 36 55% 45%;
+    --purple-glow: 38 70% 55%;
 
-    --glass-bg: 24 18% 7%;
-    --glass-border: 25 30% 22%;
+    --glass-bg: 28 24% 12%;
+    --glass-border: 28 24% 22%;
 
-    --sidebar-background: 24 18% 5%;
-    --sidebar-foreground: 30 25% 92%;
-    --sidebar-primary: 25 78% 55%;
-    --sidebar-primary-foreground: 24 18% 4%;
-    --sidebar-accent: 24 14% 10%;
-    --sidebar-accent-foreground: 30 25% 92%;
-    --sidebar-border: 25 18% 14%;
-    --sidebar-ring: 25 78% 55%;
+    --sidebar-background: 28 25% 8%;
+    --sidebar-foreground: 33 60% 89%;
+    --sidebar-primary: 42 63% 55%;
+    --sidebar-primary-foreground: 28 25% 8%;
+    --sidebar-accent: 28 22% 14%;
+    --sidebar-accent-foreground: 33 60% 89%;
+    --sidebar-border: 28 24% 18%;
+    --sidebar-ring: 42 75% 65%;
   }
 
-  /* Light theme overrides */
+  /* WARM AMBER LIGHT (Cream)
+     bg #FDF9F2 | surface #FFFFFF | text #2A241C | muted #6B5E4F
+     accent #C49A3C | hover #D4AA50 | border #E8DDD0 */
   .light {
-    --background: 35 30% 96%;
-    --foreground: 24 25% 12%;
+    --background: 40 75% 97%;           /* #FDF9F2 */
+    --foreground: 30 20% 14%;           /* #2A241C */
 
-    --card: 35 30% 99%;
-    --card-foreground: 24 25% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 30 20% 14%;
 
-    --popover: 35 30% 99%;
-    --popover-foreground: 24 25% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 20% 14%;
 
-    --primary: 25 78% 48%;
-    --primary-foreground: 35 30% 99%;
+    --primary: 42 56% 50%;              /* #C49A3C */
+    --primary-foreground: 40 75% 97%;
 
-    --secondary: 32 22% 90%;
-    --secondary-foreground: 24 25% 12%;
+    --secondary: 36 36% 92%;
+    --secondary-foreground: 30 20% 14%;
 
-    --muted: 32 18% 88%;
-    --muted-foreground: 24 12% 38%;
+    --muted: 36 30% 90%;
+    --muted-foreground: 30 16% 36%;     /* #6B5E4F */
 
-    --accent: 30 60% 45%;
-    --accent-foreground: 35 30% 99%;
+    --accent: 42 56% 50%;
+    --accent-foreground: 40 75% 97%;
 
-    --border: 30 20% 82%;
-    --input: 30 20% 82%;
-    --ring: 25 78% 48%;
+    --border: 32 35% 87%;               /* #E8DDD0 */
+    --input: 32 35% 87%;
+    --ring: 42 60% 57%;                 /* #D4AA50 */
 
-    --copper: 25 78% 48%;
-    --copper-glow: 28 88% 55%;
-    --bronze: 30 60% 42%;
-    --cocoa: 28 30% 80%;
+    --copper: 42 56% 50%;
+    --copper-glow: 42 60% 57%;
+    --bronze: 36 50% 45%;
+    --cocoa: 36 30% 85%;
 
-    --gold: 42 80% 50%;
-    --gold-glow: 42 90% 58%;
-    --amber: 32 90% 52%;
-    --orange-glow: 22 90% 52%;
-    --crimson: 25 78% 48%;
-    --crimson-glow: 28 88% 55%;
-    --purple-ambient: 30 60% 42%;
-    --purple-glow: 32 90% 52%;
+    --gold: 42 56% 50%;
+    --gold-glow: 42 60% 57%;
+    --amber: 38 65% 52%;
+    --orange-glow: 36 70% 55%;
+    --crimson: 42 56% 50%;
+    --crimson-glow: 42 60% 57%;
+    --purple-ambient: 36 50% 45%;
+    --purple-glow: 38 65% 52%;
 
-    --glass-bg: 35 30% 99%;
-    --glass-border: 30 30% 78%;
+    --glass-bg: 0 0% 100%;
+    --glass-border: 32 35% 82%;
   }
 
   /* Smooth theme transitions */

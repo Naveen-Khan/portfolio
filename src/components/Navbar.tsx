@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -87,7 +88,8 @@ const Navbar = () => {
             })}
           </ul>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <a
               href="#contact"
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] px-4 py-2 rounded-full text-background font-semibold bg-gradient-to-r from-copper-glow via-copper to-bronze hover:shadow-[0_0_30px_-5px_hsl(25_78%_55%_/_0.7)] transition-all"
@@ -96,16 +98,16 @@ const Navbar = () => {
             </a>
           </div>
 
-
-
-
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden text-foreground p-2 rounded-full border border-border/50"
-            aria-label="Toggle menu"
-          >
-            {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen(!open)}
+              className="text-foreground p-2 rounded-full border border-border/50"
+              aria-label="Toggle menu"
+            >
+              {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+            </button>
+          </div>
         </div>
 
         <AnimatePresence>
