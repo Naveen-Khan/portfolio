@@ -1,27 +1,33 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenuAlt3, HiX } from "react-icons/hi";
+import ThemeToggle from "@/components/ThemeToggle";
 
-const links = [
-  { label: "Home", href: "#home" },
+const navLinks = [
   { label: "About", href: "#about" },
-  { label: "Work", href: "#projects" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Experience", href: "#experience" },
+  { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [active, setActive] = useState("#about");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 60);
-      for (const l of links) {
-        const id = l.href.slice(1);
+      setScrolled(window.scrollY > 30);
+      const ids = navLinks.map((l) => l.href.slice(1));
+      for (const id of ids) {
         const el = document.getElementById(id);
         if (!el) continue;
-        const r = el.getBoundingClientRect();
-        if (r.top <= 140 && r.bottom >= 140) { setActive(l.href); break; }
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 140 && rect.bottom >= 140) {
+          setActive(`#${id}`); break;
+        }
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -30,86 +36,106 @@ const Navbar = () => {
   }, []);
 
   return (
-    <>
-      <header
-        className={`fixed top-0 inset-x-0 z-50 h-[60px] transition-colors duration-300 ${
-          scrolled ? "backdrop-blur-xl" : ""
+    <motion.nav
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
+      className="fixed top-4 left-4 right-4 z-50"
+    >
+      <div
+        className={`max-w-5xl mx-auto px-5 py-3 rounded-full border transition-all duration-500 ${
+          scrolled ? "border-copper/30 shadow-[0_8px_40px_-12px_hsl(25_78%_55%_/_0.35)]" : "border-border/40"
         }`}
         style={{
-          background: scrolled ? "rgba(10,10,11,0.8)" : "transparent",
-          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
+          background: scrolled
+            ? "linear-gradient(135deg, hsl(24 18% 6% / 0.85), hsl(20 25% 9% / 0.6))"
+            : "linear-gradient(135deg, hsl(24 18% 6% / 0.6), hsl(20 25% 9% / 0.35))",
+          backdropFilter: "blur(28px) saturate(1.4)",
         }}
       >
-        <div className="container-page h-full flex items-center justify-between">
-          <a href="#home" className="text-z1 font-medium text-[15px] tracking-tight">
-            Naveen Khan
+        <div className="flex items-center justify-between gap-6">
+          <a href="#" className="flex items-center gap-2 group">
+            <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-copper-glow via-copper to-bronze flex items-center justify-center font-display font-bold text-background text-sm">
+              NK
+              <div className="absolute inset-0 rounded-full bg-copper-glow/40 blur-md group-hover:blur-lg transition-all" />
+            </div>
+            <span className="hidden sm:block font-display text-base tracking-wide gradient-text">Naveen Khan</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8">
-            {links.map((l) => {
+          <ul className="hidden md:flex items-center gap-1">
+            {navLinks.map((l) => {
               const isActive = active === l.href;
               return (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  className="relative text-[14px] transition-colors duration-200"
-                  style={{ color: isActive ? "#FAFAFA" : "#71717A" }}
-                >
-                  {l.label}
-                  {isActive && (
-                    <span
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full"
-                      style={{ background: "#6366F1", boxShadow: "0 0 8px rgba(99,102,241,0.8)" }}
-                    />
-                  )}
-                </a>
+                <li key={l.href} className="relative">
+                  <a
+                    href={l.href}
+                    className={`relative px-4 py-2 text-xs uppercase tracking-[0.18em] font-medium transition-colors ${
+                      isActive ? "text-copper-glow" : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {l.label}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-pill"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        className="absolute inset-0 -z-10 rounded-full border border-copper/40"
+                        style={{ background: "linear-gradient(135deg, hsl(25 78% 55% / 0.18), hsl(30 55% 42% / 0.1))" }}
+                      />
+                    )}
+                  </a>
+                </li>
               );
             })}
-          </nav>
+          </ul>
 
-          <div className="hidden md:flex items-center gap-2 text-[13px] font-medium" style={{ color: "#22C55E" }}>
-            <span className="dot-green" />
-            Available
-          </div>
-
-          <button
-            className="md:hidden text-z1 p-2 -mr-2"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu size={22} />
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile drawer */}
-      <div
-        className={`fixed inset-0 z-[60] md:hidden transition-opacity duration-300 ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-        style={{ background: "#111113" }}
-      >
-        <div className="flex items-center justify-between h-[60px] container-page">
-          <span className="text-z1 font-medium text-[15px]">Naveen Khan</span>
-          <button onClick={() => setOpen(false)} aria-label="Close menu" className="p-2 -mr-2 text-z1">
-            <X size={22} />
-          </button>
-        </div>
-        <nav className="flex flex-col items-center justify-center gap-8 pt-24">
-          {links.map((l) => (
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
             <a
-              key={l.href}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="text-z1 text-3xl font-display font-bold tracking-tight"
+              href="#contact"
+              className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] px-4 py-2 rounded-full text-background font-semibold bg-gradient-to-r from-copper-glow via-copper to-bronze hover:shadow-[0_0_30px_-5px_hsl(25_78%_55%_/_0.7)] transition-all"
             >
-              {l.label}
+              Let's Talk
             </a>
-          ))}
-          <div className="flex items-center gap-2 text-[14px] font-medium mt-6" style={{ color: "#22C55E" }}>
-            <span className="dot-green" /> Available for work
           </div>
-        </nav>
+
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen(!open)}
+              className="text-foreground p-2 rounded-full border border-border/50"
+              aria-label="Toggle menu"
+            >
+              {open ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+            </button>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="md:hidden overflow-hidden mt-3"
+            >
+              <ul className="flex flex-col gap-1 pt-2 border-t border-border/40 text-center">
+                {navLinks.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      onClick={() => setOpen(false)}
+                      className="block px-4 py-3 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-copper-glow text-center"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-    </>
+    </motion.nav>
   );
 };
 
