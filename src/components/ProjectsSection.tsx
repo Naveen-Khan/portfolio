@@ -1,131 +1,137 @@
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef, MouseEvent } from "react";
-import SectionHeading from "./SectionHeading";
-import { FaGithub } from "react-icons/fa";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { Github, ArrowUpRight } from "lucide-react";
 
-const projects = [
-  {
-    n: "01",
-    title: "AI-Powered Chatbot Assistant",
-    tag: "RAG · LLM · NLP",
-    tech: ["RAG", "LLM", "Python", "NLP"],
-    description:
-      "A RAG-based conversational assistant with intelligent document retrieval and context-aware responses — built for production-grade enterprise workflows.",
-    github: "https://github.com/Naveen-Khan/CATI--chatbot",
-  },
-  {
-    n: "02",
-    title: "Autonomous Infrastructure Inspection",
-    tag: "Computer Vision · YOLO",
-    tech: ["YOLO", "Computer Vision", "Streamlit"],
-    description:
-      "End-to-end road-crack detection system with a YOLO inspection pipeline and a polished Streamlit visualization dashboard.",
-    github: "https://github.com/Naveen-Khan/Autonomous-Infrastructure-Inspection-System",
-  },
-  {
-    n: "03",
-    title: "Medical Disease Diagnosis Agent",
-    tag: "DenseNet · TensorFlow",
-    tech: ["DenseNet", "TensorFlow", "CNN", "Streamlit"],
-    description:
-      "DenseNet-based MRI classification reaching high validation accuracy, paired with an interactive prediction UI built for clinicians.",
-    github: "#",
-  },
-  {
-    n: "04",
-    title: "Multimodal Smart Wearable Safety System",
-    tag: "YOLO · GPS · Voice",
-    tech: ["YOLO", "GPS", "Voice Commands"],
-    description:
-      "YOLO threat detection + GPS alerts + voice-triggered safety system. 🏆 2nd place — IEEE Project Exhibition 2025.",
-    github: "https://github.com/Naveen-Khan/Multimodal-Smar-Wearable-Device-For-Personal-Saftey",
-  },
-  {
-    n: "05",
-    title: "Coffee Shop Sales Analytics",
-    tag: "Excel · Data Viz",
-    tech: ["Excel", "Pivot Tables", "Data Viz"],
-    description:
-      "Business analytics with pivot tables, trend insights and decision-support visualizations — designed for non-technical stakeholders.",
-    github: "https://github.com/Naveen-Khan/Data-Analyst-projects",
-  },
-];
-
-const ProjectCard = ({ p, i }: { p: typeof projects[number]; i: number }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rx = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), { stiffness: 200, damping: 20 });
-  const ry = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), { stiffness: 200, damping: 20 });
-
-  const handleMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    x.set((e.clientX - rect.left) / rect.width - 0.5);
-    y.set((e.clientY - rect.top) / rect.height - 0.5);
-  };
-  const handleLeave = () => { x.set(0); y.set(0); };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, delay: i * 0.08, ease: [0.2, 0.8, 0.2, 1] }}
-      ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{ rotateX: rx, rotateY: ry, transformPerspective: 1200 }}
-      className="group relative rounded-3xl overflow-hidden glass-card card-hover-glow p-7 sm:p-9 cursor-pointer"
+const FeaturedVisual = () => (
+  <div
+    className="relative h-full min-h-[280px] rounded-xl overflow-hidden"
+    style={{
+      background:
+        "radial-gradient(ellipse 80% 60% at 70% 30%, rgba(99,102,241,0.30) 0%, transparent 60%), #0A0A0B",
+      border: "1px solid rgba(255,255,255,0.06)",
+    }}
+  >
+    {/* dot grid */}
+    <div
+      className="absolute inset-0 opacity-40"
+      style={{
+        backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.10) 1px, transparent 1px)",
+        backgroundSize: "16px 16px",
+      }}
+    />
+    {/* code snippet */}
+    <div
+      className="absolute inset-0 p-6 mono text-[12px] leading-[1.8]"
+      style={{ color: "rgba(129,140,248,0.55)" }}
     >
-      {/* hover glow */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: "radial-gradient(600px circle at var(--mx,50%) var(--my,50%), hsl(25 78% 55% / 0.18), transparent 60%)" }} />
-      <div className="relative z-10 flex flex-col h-full" style={{ transform: "translateZ(40px)" }}>
-        <div className="flex items-start justify-between mb-6">
-          <span className="font-mono-code text-xs text-copper-glow/70 tracking-widest">{p.n}</span>
-          <a
-            href={p.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View on GitHub"
-            className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground/70 hover:text-copper-glow border border-border/50 hover:border-copper/60 transition-all"
-          >
-            <FaGithub size={15} />
-          </a>
-        </div>
-        <p className="text-[10px] uppercase tracking-[0.3em] text-copper-glow/80 mb-3">{p.tag}</p>
-        <h3 className="font-display text-2xl sm:text-3xl text-foreground/95 leading-tight mb-3 group-hover:gradient-text-warm transition-all">
-          {p.title}
-        </h3>
-        <p className="text-sm text-foreground/65 leading-relaxed mb-6 flex-1">{p.description}</p>
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {p.tech.map((t) => (
-            <span key={t} className="text-[10px] px-2.5 py-1 rounded-full bg-copper/10 text-copper-glow border border-copper/25">
-              {t}
-            </span>
-          ))}
-        </div>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 group-hover:text-copper-glow transition-colors">
-          Case Study <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </div>
+      <div>from langchain import FAISS</div>
+      <div>from mistral import LLM</div>
+      <div className="opacity-70">&nbsp;</div>
+      <div>
+        <span style={{ color: "#52525B" }}># retrieve context</span>
       </div>
-    </motion.div>
-  );
-};
+      <div>ctx = vectorstore.search(query, k=4)</div>
+      <div>answer = llm.generate(prompt, ctx)</div>
+    </div>
+    <div
+      className="absolute -bottom-12 -right-12 w-48 h-48 rounded-full"
+      style={{ background: "radial-gradient(circle, rgba(99,102,241,0.25), transparent 70%)", filter: "blur(40px)" }}
+    />
+  </div>
+);
 
-const ProjectsSection = () => (
-  <section id="projects" className="py-32 relative overflow-hidden">
-    <div className="absolute top-1/3 left-0 w-[600px] h-[600px] rounded-full opacity-20 pointer-events-none"
-      style={{ background: "radial-gradient(circle, hsl(25 78% 55% / 0.5), transparent 70%)", filter: "blur(100px)" }} />
-    <div className="section-container relative z-10">
-      <SectionHeading eyebrow="03 — Selected Work" title="What I've Built" subtitle="Case studies in applied intelligence" variant="zoom" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
-        {projects.map((p, i) => <ProjectCard key={p.title} p={p} i={i} />)}
+const Projects = () => (
+  <section id="projects" className="section-pad bg-surface">
+    <div className="container-page">
+      <div className="section-label mb-4">Projects</div>
+      <h2 className="section-heading max-w-[700px]">What I’ve shipped.</h2>
+
+      <div className="mt-12 flex flex-col gap-4">
+        {/* Featured */}
+        <article
+          className="rounded-2xl p-8 md:p-12 shadow-feature"
+          style={{
+            background: "linear-gradient(135deg, #111113 0%, #16161A 100%)",
+            border: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-center">
+            <div className="lg:col-span-3">
+              <div className="text-indigo text-[12px] font-medium uppercase" style={{ letterSpacing: "0.08em" }}>
+                Featured Project
+              </div>
+              <h3
+                className="mt-3 text-z1"
+                style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 700, fontSize: "clamp(24px, 3.5vw, 32px)", letterSpacing: "-0.02em" }}
+              >
+                CATI — AI Chatbot Assistant
+              </h3>
+              <p className="mt-4 max-w-[440px]" style={{ color: "#A1A1AA", fontSize: 16, lineHeight: 1.75 }}>
+                Enterprise RAG-based AI chatbot deployed at Civil Aviation Authority of Pakistan.
+                Retrieves and synthesizes information from internal documents using Mistral LLM,
+                FAISS vector search, and Groq API for real-time inference.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["RAG", "Mistral LLM", "FAISS", "Groq", "Hugging Face"].map((t) => (
+                  <span key={t} className="tag-accent">{t}</span>
+                ))}
+              </div>
+              <a href="https://github.com/" target="_blank" rel="noreferrer" className="btn-ghost mt-8">
+                <Github size={16} /> View on GitHub
+              </a>
+            </div>
+            <div className="lg:col-span-2">
+              <FeaturedVisual />
+            </div>
+          </div>
+        </article>
+
+        {/* Row of 2 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <article className="card-base p-8 relative overflow-hidden">
+            <div className="text-indigo text-[12px] font-medium uppercase" style={{ letterSpacing: "0.08em" }}>
+              Deep Learning
+            </div>
+            <h3 className="mt-3 text-z1" style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em" }}>
+              Medical Diagnosis Agent
+            </h3>
+            <div
+              className="absolute top-6 right-6 mono"
+              style={{ color: "#6366F1", fontSize: 36, fontWeight: 500, lineHeight: 1 }}
+            >
+              93%
+            </div>
+            <p className="mt-4" style={{ color: "#A1A1AA", fontSize: 15, lineHeight: 1.7 }}>
+              DenseNet121 model for medical imaging classification. Built complete ML pipeline from
+              preprocessing to Streamlit deployment.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["DenseNet121", "OpenCV", "Streamlit"].map((t) => (
+                <span key={t} className="tag-accent">{t}</span>
+              ))}
+            </div>
+          </article>
+
+          <article className="card-base p-8">
+            <div className="text-indigo text-[12px] font-medium uppercase" style={{ letterSpacing: "0.08em" }}>
+              Computer Vision
+            </div>
+            <h3 className="mt-3 text-z1" style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em" }}>
+              Smart Safety Wearable
+            </h3>
+            <p className="mt-4" style={{ color: "#A1A1AA", fontSize: 15, lineHeight: 1.7 }}>
+              Real-time YOLO object detection for personal safety. Emergency alert system.
+              IEEE competition project.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {["YOLO", "OpenCV", "Real-time"].map((t) => (
+                <span key={t} className="tag-accent">{t}</span>
+              ))}
+            </div>
+            <ArrowUpRight size={16} className="absolute opacity-0" />
+          </article>
+        </div>
       </div>
     </div>
   </section>
 );
 
-export default ProjectsSection;
+export default Projects;

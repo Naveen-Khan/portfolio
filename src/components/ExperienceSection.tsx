@@ -1,95 +1,68 @@
-import { motion } from "framer-motion";
-import SectionHeading from "./SectionHeading";
-import { HiBriefcase } from "react-icons/hi";
-
-const experiences = [
+const items = [
   {
+    date: "2024",
+    company: "Civil Aviation Authority of Pakistan",
     role: "AI Engineer Intern",
-    company: "Civil Aviation Authority Pakistan",
-    date: "Jul 2025 — Aug 2025",
-    points: [
-      "Built conversational automation system for internal operations",
-      "Worked on document indexing pipelines for efficient retrieval",
-      "Improved internal workflow efficiency through AI-based automation",
-      "Supported AI-driven operational automation initiatives",
+    bullets: [
+      "Built CATI — enterprise RAG chatbot using Mistral LLM + FAISS + Groq API",
+      "Developed document retrieval pipeline for internal knowledge systems",
+      "Optimized LLM inference latency with Groq API integration",
     ],
+    tags: ["RAG", "Mistral", "FAISS", "Groq"],
   },
   {
+    date: "2024",
+    company: "Itsolera Pvt. Ltd.",
     role: "AI Engineer Intern",
-    company: "Itsolera Pvt Ltd",
-    date: "Jan 2026 — Mar 2026",
-    points: [
-      "Built DenseNet medical image classification system",
-      "Performed dataset augmentation to improve robustness",
-      "Improved validation accuracy through training optimization",
-      "Built Streamlit-based prediction interface for clinicians",
+    bullets: [
+      "DenseNet121 model for medical image disease classification — 93% accuracy",
+      "Built end-to-end healthcare prediction pipeline in Streamlit",
+      "Deployed production-ready AI diagnostic interface",
     ],
+    tags: ["DenseNet121", "TensorFlow", "Streamlit", "Healthcare AI"],
   },
 ];
 
+const Experience = () => (
+  <section id="experience" className="section-pad bg-bg">
+    <div className="container-page">
+      <div className="section-label mb-4">Experience</div>
+      <h2 className="section-heading max-w-[700px]">Where I’ve built.</h2>
 
-const ExperienceSection = () => (
-  <section id="experience" className="py-32 relative overflow-hidden">
-    {/* floating particles */}
-    {[...Array(12)].map((_, i) => (
-      <div
-        key={i}
-        className="absolute w-1 h-1 rounded-full bg-copper-glow/50 animate-float pointer-events-none"
-        style={{
-          left: `${(i * 83) % 100}%`,
-          top: `${(i * 47) % 100}%`,
-          animationDelay: `${i * 0.7}s`,
-          animationDuration: `${5 + (i % 4)}s`,
-          boxShadow: "0 0 10px hsl(25 78% 55% / 0.6)",
-        }}
-      />
-    ))}
-
-    <div className="section-container relative z-10 max-w-4xl">
-      <SectionHeading eyebrow="04 — Journey" title="Where I've Worked" subtitle="Industry experience that shaped the craft" variant="slide" />
-
-      <div className="relative">
-        {/* vertical glowing line */}
-        <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-copper/60 to-transparent" />
-
-        <div className="space-y-12">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: i * 0.15 }}
-              className={`relative pl-12 sm:pl-0 sm:grid sm:grid-cols-2 sm:gap-12 ${i % 2 === 0 ? "" : "sm:[&>*:first-child]:order-2"}`}
-            >
-              {/* node */}
-              <div className="absolute left-4 sm:left-1/2 top-6 -translate-x-1/2 z-10">
-                <div className="relative w-4 h-4 rounded-full bg-copper-glow shadow-[0_0_25px_hsl(30_90%_65%_/_0.9)]">
-                  <div className="absolute inset-0 rounded-full bg-copper-glow animate-ping opacity-60" />
-                </div>
+      <div className="mt-12 flex flex-col gap-4">
+        {items.map((it) => (
+          <article key={it.company} className="card-base p-8">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <div className="md:col-span-2 text-[13px] mono" style={{ color: "#52525B" }}>
+                {it.date}
               </div>
-
-              <div className={`glass-card glow-border p-6 rounded-3xl ${i % 2 === 0 ? "sm:text-right" : ""}`}>
-                <div className={`flex items-center gap-2 mb-3 ${i % 2 === 0 ? "sm:justify-end" : ""}`}>
-                  <HiBriefcase className="text-copper-glow" />
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-copper-glow/80 font-mono-code">{exp.date}</p>
-                </div>
-                <h3 className="font-display text-xl text-foreground/95">{exp.role}</h3>
-                <p className="text-sm gradient-text-warm font-semibold mb-4">{exp.company}</p>
-                <ul className={`space-y-2 ${i % 2 === 0 ? "sm:text-right" : ""}`}>
-                  {exp.points.map((pt) => (
-                    <li key={pt} className="text-xs text-foreground/70 leading-relaxed">{pt}</li>
+              <div className="md:col-span-7">
+                <h3 className="text-z1" style={{ fontFamily: "Inter", fontWeight: 600, fontSize: 18, letterSpacing: "-0.01em" }}>
+                  {it.company}
+                </h3>
+                <div className="text-indigo-light text-[14px] mt-1">{it.role}</div>
+                <ul className="mt-4 space-y-2">
+                  {it.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 text-[15px]" style={{ color: "#A1A1AA", lineHeight: 1.7 }}>
+                      <span aria-hidden className="text-z3 mt-[10px] w-1 h-1 rounded-full shrink-0" style={{ background: "#52525B" }} />
+                      <span>{b}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
-              <div />
-            </motion.div>
-          ))}
-        </div>
+              <div className="md:col-span-3 flex md:justify-end items-start">
+                <div className="flex flex-wrap gap-2 md:justify-end">
+                  {it.tags.map((t) => (
+                    <span key={t} className="tag-accent">{t}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
-
     </div>
   </section>
 );
 
-export default ExperienceSection;
+export default Experience;
