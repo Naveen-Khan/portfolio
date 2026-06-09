@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import ThemeToggle from "@/components/ThemeToggle";
+
 
 const navLinks = [
   { label: "About", href: "#about" },
