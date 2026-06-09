@@ -67,57 +67,8 @@
     --sidebar-ring: 42 75% 65%;
   }
 
-  /* WARM AMBER LIGHT (Cream)
-     bg #FDF9F2 | surface #FFFFFF | text #2A241C | muted #6B5E4F
-     accent #C49A3C | hover #D4AA50 | border #E8DDD0 */
-  .light {
-    --background: 40 75% 97%;           /* #FDF9F2 */
-    --foreground: 30 20% 14%;           /* #2A241C */
 
-    --card: 0 0% 100%;
-    --card-foreground: 30 20% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 30 20% 14%;
-
-    --primary: 42 56% 50%;              /* #C49A3C */
-    --primary-foreground: 40 75% 97%;
-
-    --secondary: 36 36% 92%;
-    --secondary-foreground: 30 20% 14%;
-
-    --muted: 36 30% 90%;
-    --muted-foreground: 30 16% 36%;     /* #6B5E4F */
-
-    --accent: 42 56% 50%;
-    --accent-foreground: 40 75% 97%;
-
-    --border: 32 35% 87%;               /* #E8DDD0 */
-    --input: 32 35% 87%;
-    --ring: 42 60% 57%;                 /* #D4AA50 */
-
-    --copper: 42 56% 50%;
-    --copper-glow: 42 60% 57%;
-    --bronze: 36 50% 45%;
-    --cocoa: 36 30% 85%;
-
-    --gold: 42 56% 50%;
-    --gold-glow: 42 60% 57%;
-    --amber: 38 65% 52%;
-    --orange-glow: 36 70% 55%;
-    --crimson: 42 56% 50%;
-    --crimson-glow: 42 60% 57%;
-    --purple-ambient: 36 50% 45%;
-    --purple-glow: 38 65% 52%;
-
-    --glass-bg: 0 0% 100%;
-    --glass-border: 32 35% 82%;
-  }
-
-  /* Smooth theme transitions */
-  html, body, *, *::before, *::after {
-    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease;
-  }
 }
 
 @layer base {
@@ -139,78 +90,54 @@
 @layer components {
   .glass-card {
     @apply rounded-2xl;
-    background: linear-gradient(135deg, hsl(var(--glass-bg) / 0.55), hsl(20 25% 9% / 0.35));
-    backdrop-filter: blur(24px) saturate(1.4);
-    -webkit-backdrop-filter: blur(24px) saturate(1.4);
-    border: 1px solid hsl(var(--glass-border) / 0.5);
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.6);
   }
   .glow-border {
-    box-shadow:
-      0 0 30px -8px hsl(var(--copper) / 0.45),
-      0 0 60px -16px hsl(var(--amber) / 0.28),
-      0 0 100px -28px hsl(var(--purple-ambient) / 0.18),
-      inset 0 1px 0 0 hsl(var(--gold-glow) / 0.18);
     border-color: hsl(var(--copper) / 0.45);
   }
   .glow-text {
-    text-shadow:
-      0 0 30px hsl(var(--copper-glow) / 0.55),
-      0 0 60px hsl(var(--orange-glow) / 0.32),
-      0 0 90px hsl(var(--crimson-glow) / 0.18),
-      0 2px 0 hsl(20 30% 4% / 0.8);
+    text-shadow: 0 0 24px hsl(var(--copper-glow) / 0.35);
   }
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--gold-glow)) 0%, hsl(var(--copper-glow)) 40%, hsl(var(--crimson-glow)) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--gold-glow)) 0%, hsl(var(--copper-glow)) 50%, hsl(var(--copper)) 100%);
   }
   .gradient-text-warm {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(180deg, hsl(var(--gold-glow)) 0%, hsl(var(--amber)) 35%, hsl(var(--copper)) 70%, hsl(var(--crimson)) 100%);
+    background-image: linear-gradient(180deg, hsl(var(--gold-glow)) 0%, hsl(var(--copper)) 100%);
   }
   .gradient-text-cinematic {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(120deg, hsl(var(--gold-glow)) 0%, hsl(var(--amber)) 25%, hsl(var(--copper-glow)) 50%, hsl(var(--crimson-glow)) 75%, hsl(var(--purple-glow)) 100%);
-    background-size: 250% auto;
+    background-image: linear-gradient(120deg, hsl(var(--gold-glow)) 0%, hsl(var(--copper-glow)) 50%, hsl(var(--copper)) 100%);
+    background-size: 200% auto;
     animation: shine 8s linear infinite;
   }
   .neural-grid {
     background-image:
-      linear-gradient(hsl(var(--copper) / 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--copper) / 0.04) 1px, transparent 1px);
+      linear-gradient(hsl(var(--copper) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--copper) / 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
   .btn-glow {
     @apply relative overflow-hidden;
-    background-image: linear-gradient(120deg, hsl(var(--gold)) 0%, hsl(var(--amber)) 35%, hsl(var(--copper)) 65%, hsl(var(--crimson)) 100%);
-    background-size: 220% auto;
+    background-image: linear-gradient(120deg, hsl(var(--gold)) 0%, hsl(var(--copper)) 100%);
+    background-size: 200% auto;
     background-position: 0% center;
-    box-shadow:
-      0 0 35px -5px hsl(var(--amber) / 0.55),
-      0 0 70px -15px hsl(var(--crimson-glow) / 0.32),
-      0 0 110px -25px hsl(var(--purple-ambient) / 0.22),
-      inset 0 1px 0 0 hsl(var(--gold-glow) / 0.45);
-    transition: background-position 0.8s ease, box-shadow 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-position 0.6s ease, transform 0.4s ease;
   }
   .btn-glow:hover {
     background-position: 100% center;
-    box-shadow:
-      0 0 55px -3px hsl(var(--gold-glow) / 0.7),
-      0 0 110px -8px hsl(var(--amber) / 0.45),
-      0 0 150px -20px hsl(var(--crimson) / 0.35),
-      inset 0 1px 0 0 hsl(var(--gold-glow) / 0.7);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
   .card-hover-glow {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 0.3s ease, transform 0.3s ease;
   }
   .card-hover-glow:hover {
-    box-shadow:
-      0 10px 40px -10px hsl(var(--copper) / 0.45),
-      0 0 80px -20px hsl(var(--amber) / 0.3),
-      0 0 130px -30px hsl(var(--purple-ambient) / 0.22),
-      inset 0 1px 0 0 hsl(var(--gold-glow) / 0.25);
-    border-color: hsl(var(--gold-glow) / 0.55);
-    transform: translateY(-4px);
+    border-color: hsl(var(--copper) / 0.5);
+    transform: translateY(-2px);
   }
   .section-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-10;

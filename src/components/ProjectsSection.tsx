@@ -9,45 +9,45 @@ const projects = [
     n: "01",
     title: "AI-Powered Chatbot Assistant",
     tag: "RAG · LLM · NLP",
-    tech: ["RAG", "LLM", "Python", "NLP"],
+    tech: ["RAG", "LLM", "Python", "LangChain", "Vector DB", "NLP"],
     description:
-      "A RAG-based conversational assistant with intelligent document retrieval and context-aware responses — built for production-grade enterprise workflows.",
+      "An enterprise-grade conversational assistant built on a Retrieval-Augmented Generation pipeline. Ingests domain documents, chunks and embeds them into a vector store, and uses an LLM with carefully engineered prompts to deliver context-aware, citation-backed answers. Supports multi-turn memory, fallback handling for out-of-scope queries, and a clean chat UI optimized for real customer-support workflows.",
     github: "https://github.com/Naveen-Khan/CATI--chatbot",
   },
   {
     n: "02",
     title: "Autonomous Infrastructure Inspection",
     tag: "Computer Vision · YOLO",
-    tech: ["YOLO", "Computer Vision", "Streamlit"],
+    tech: ["YOLOv8", "OpenCV", "PyTorch", "Streamlit", "Python"],
     description:
-      "End-to-end road-crack detection system with a YOLO inspection pipeline and a polished Streamlit visualization dashboard.",
+      "An end-to-end road-damage detection system that automates manual highway inspection. A custom-trained YOLOv8 model identifies potholes, longitudinal cracks, alligator cracks and surface erosion from drone and dash-cam footage in real time. Results stream into a Streamlit dashboard with severity scoring, geo-tagged heatmaps, and exportable inspection reports for civil engineering teams.",
     github: "https://github.com/Naveen-Khan/Autonomous-Infrastructure-Inspection-System",
   },
   {
     n: "03",
     title: "Medical Disease Diagnosis Agent",
     tag: "DenseNet · TensorFlow",
-    tech: ["DenseNet", "TensorFlow", "CNN", "Streamlit"],
+    tech: ["DenseNet121", "TensorFlow", "Keras", "CNN", "Streamlit"],
     description:
-      "DenseNet-based MRI classification reaching high validation accuracy, paired with an interactive prediction UI built for clinicians.",
+      "A deep-learning diagnostic assistant that classifies brain MRI scans across multiple tumor categories. Built on a transfer-learned DenseNet121 backbone with data augmentation, class balancing and fine-tuned dense heads, reaching strong validation accuracy on held-out scans. Wrapped in a clinician-friendly Streamlit interface that returns the predicted class, confidence scores and a Grad-CAM heatmap for explainability.",
     github: "#",
   },
   {
     n: "04",
     title: "Multimodal Smart Wearable Safety System",
     tag: "YOLO · GPS · Voice",
-    tech: ["YOLO", "GPS", "Voice Commands"],
+    tech: ["YOLOv8", "Raspberry Pi", "GPS", "Voice Recognition", "IoT"],
     description:
-      "YOLO threat detection + GPS alerts + voice-triggered safety system. 🏆 2nd place — IEEE Project Exhibition 2025.",
+      "A wearable personal-safety device that fuses computer vision, audio and location signals. An on-device YOLO model detects weapons and physical threats from a body-cam feed, while voice-trigger phrases and a panic button instantly broadcast GPS coordinates with a live alert to emergency contacts. 🏆 Awarded 2nd place at the IEEE Project Exhibition 2025 for innovation in multimodal embedded AI.",
     github: "https://github.com/Naveen-Khan/Multimodal-Smar-Wearable-Device-For-Personal-Saftey",
   },
   {
     n: "05",
     title: "Coffee Shop Sales Analytics",
     tag: "Excel · Data Viz",
-    tech: ["Excel", "Pivot Tables", "Data Viz"],
+    tech: ["Excel", "Power Query", "Pivot Tables", "DAX", "Dashboards"],
     description:
-      "Business analytics with pivot tables, trend insights and decision-support visualizations — designed for non-technical stakeholders.",
+      "A full business-intelligence study of a multi-location coffee chain's transactional data. Cleaned and modeled raw POS exports with Power Query, built pivot-driven analyses of revenue trends, peak hours, product mix, store performance and customer behavior, and packaged the findings into an interactive dashboard with actionable recommendations for marketing and operations.",
     github: "https://github.com/Naveen-Khan/Data-Analyst-projects",
   },
 ];
