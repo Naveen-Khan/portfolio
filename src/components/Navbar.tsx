@@ -99,7 +99,7 @@ const Navbar = () => {
           </div>
 
           <div className="md:hidden flex items-center gap-2">
-            <ThemeToggle />
+
             <button
               onClick={() => setOpen(!open)}
               className="text-foreground p-2 rounded-full border border-border/50"
