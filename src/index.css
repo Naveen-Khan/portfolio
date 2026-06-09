@@ -67,57 +67,8 @@
     --sidebar-ring: 42 75% 65%;
   }
 
-  /* WARM AMBER LIGHT (Cream)
-     bg #FDF9F2 | surface #FFFFFF | text #2A241C | muted #6B5E4F
-     accent #C49A3C | hover #D4AA50 | border #E8DDD0 */
-  .light {
-    --background: 40 75% 97%;           /* #FDF9F2 */
-    --foreground: 30 20% 14%;           /* #2A241C */
 
-    --card: 0 0% 100%;
-    --card-foreground: 30 20% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 30 20% 14%;
-
-    --primary: 42 56% 50%;              /* #C49A3C */
-    --primary-foreground: 40 75% 97%;
-
-    --secondary: 36 36% 92%;
-    --secondary-foreground: 30 20% 14%;
-
-    --muted: 36 30% 90%;
-    --muted-foreground: 30 16% 36%;     /* #6B5E4F */
-
-    --accent: 42 56% 50%;
-    --accent-foreground: 40 75% 97%;
-
-    --border: 32 35% 87%;               /* #E8DDD0 */
-    --input: 32 35% 87%;
-    --ring: 42 60% 57%;                 /* #D4AA50 */
-
-    --copper: 42 56% 50%;
-    --copper-glow: 42 60% 57%;
-    --bronze: 36 50% 45%;
-    --cocoa: 36 30% 85%;
-
-    --gold: 42 56% 50%;
-    --gold-glow: 42 60% 57%;
-    --amber: 38 65% 52%;
-    --orange-glow: 36 70% 55%;
-    --crimson: 42 56% 50%;
-    --crimson-glow: 42 60% 57%;
-    --purple-ambient: 36 50% 45%;
-    --purple-glow: 38 65% 52%;
-
-    --glass-bg: 0 0% 100%;
-    --glass-border: 32 35% 82%;
-  }
-
-  /* Smooth theme transitions */
-  html, body, *, *::before, *::after {
-    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease;
-  }
 }
 
 @layer base {
