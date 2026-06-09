@@ -6,65 +6,64 @@
 
 @layer base {
   :root {
-    /* WARM AMBER EDITORIAL — DARK
-       bg #1A140F | surface #241D16 | text #F5E6D3 | muted #C4B5A0
-       accent #D4A843 | hover #E8C468 | border #3A2E24 */
-    --background: 28 25% 8%;            /* #1A140F */
-    --foreground: 33 60% 89%;           /* #F5E6D3 */
+    /* BROWN · ORANGE · BLACK · WHITE */
+    --background: 0 0% 6%;              /* near black */
+    --foreground: 0 0% 98%;             /* white */
 
-    --card: 28 24% 12%;                 /* #241D16 */
-    --card-foreground: 33 60% 89%;
+    --card: 20 15% 10%;                 /* deep brown-black */
+    --card-foreground: 0 0% 98%;
 
-    --popover: 28 24% 12%;
-    --popover-foreground: 33 60% 89%;
+    --popover: 20 15% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    /* Amber gold */
-    --primary: 42 63% 55%;              /* #D4A843 */
-    --primary-foreground: 28 25% 8%;
+    /* Orange primary */
+    --primary: 22 90% 55%;              /* vivid orange */
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 28 22% 14%;
-    --secondary-foreground: 33 60% 89%;
+    --secondary: 22 20% 14%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 28 20% 13%;
-    --muted-foreground: 33 22% 70%;     /* #C4B5A0 */
+    --muted: 22 15% 13%;
+    --muted-foreground: 28 10% 70%;
 
-    --accent: 42 63% 55%;
-    --accent-foreground: 28 25% 8%;
+    --accent: 22 90% 55%;
+    --accent-foreground: 0 0% 8%;
 
     --destructive: 0 65% 55%;
-    --destructive-foreground: 33 60% 89%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 28 24% 18%;               /* #3A2E24 */
-    --input: 28 24% 18%;
-    --ring: 42 75% 65%;                 /* #E8C468 */
+    --border: 22 20% 18%;
+    --input: 22 20% 18%;
+    --ring: 22 90% 60%;
 
     --radius: 0.5rem;
 
-    --copper: 42 63% 55%;
-    --copper-glow: 42 75% 65%;          /* #E8C468 */
-    --bronze: 36 55% 45%;
-    --cocoa: 28 22% 12%;
+    /* Brown + Orange accents */
+    --copper: 22 85% 52%;               /* orange */
+    --copper-glow: 24 95% 62%;          /* bright orange */
+    --bronze: 25 55% 38%;               /* brown */
+    --cocoa: 22 35% 18%;                /* deep brown */
 
-    --gold: 42 63% 55%;
-    --gold-glow: 42 75% 65%;
-    --amber: 38 70% 55%;
-    --orange-glow: 36 75% 58%;
-    --crimson: 42 63% 55%;
-    --crimson-glow: 42 75% 65%;
-    --purple-ambient: 36 55% 45%;
-    --purple-glow: 38 70% 55%;
+    --gold: 22 85% 52%;
+    --gold-glow: 24 95% 62%;
+    --amber: 20 80% 50%;
+    --orange-glow: 22 95% 60%;
+    --crimson: 18 75% 45%;
+    --crimson-glow: 22 90% 55%;
+    --purple-ambient: 25 55% 35%;
+    --purple-glow: 22 70% 45%;
 
-    --glass-bg: 28 24% 12%;
-    --glass-border: 28 24% 22%;
+    --glass-bg: 20 15% 10%;
+    --glass-border: 22 20% 22%;
 
-    --sidebar-background: 28 25% 8%;
-    --sidebar-foreground: 33 60% 89%;
-    --sidebar-primary: 42 63% 55%;
-    --sidebar-primary-foreground: 28 25% 8%;
-    --sidebar-accent: 28 22% 14%;
-    --sidebar-accent-foreground: 33 60% 89%;
-    --sidebar-border: 28 24% 18%;
-    --sidebar-ring: 42 75% 65%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 22 90% 55%;
+    --sidebar-primary-foreground: 0 0% 8%;
+    --sidebar-accent: 22 20% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 22 20% 18%;
+    --sidebar-ring: 22 90% 60%;
   }
 
 
