@@ -127,9 +127,20 @@ const ProjectCard = ({ p, i }: { p: typeof projects[number]; i: number }) => {
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 group-hover:text-copper-glow transition-colors">
-          Case Study <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </div>
+        {p.live ? (
+          <a
+            href={p.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 hover:text-copper-glow transition-colors"
+          >
+            Live Demo <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </a>
+        ) : (
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 group-hover:text-copper-glow transition-colors">
+            Case Study <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </div>
+        )}
       </div>
     </motion.div>
   );

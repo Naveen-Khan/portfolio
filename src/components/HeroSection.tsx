@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { HiDownload, HiMail, HiArrowDown } from "react-icons/hi";
-import heroBg from "@/assets/hero-bg.jpg";
+
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,35 +32,10 @@ const HeroSection = () => {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden grain"
     >
-      {/* Cinematic background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt=""
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover scale-110"
-          style={{ ...parallax(20), transition: "transform 0.6s ease-out" }}
-        />
-        {/* film overlays */}
+      {/* Minimal dark background */}
+      <div className="absolute inset-0 z-0 bg-background">
         <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/70" />
-        {/* moving light beams (simulates video) */}
-        <div
-          className="absolute -top-1/2 left-1/3 w-[60vw] h-[140vh] opacity-40 animate-drift"
-          style={{
-            background: "conic-gradient(from 90deg at 50% 50%, transparent 0deg, hsl(25 78% 55% / 0.35) 60deg, transparent 120deg)",
-            filter: "blur(60px)",
-          }}
-        />
-        <div
-          className="absolute -bottom-1/3 right-1/4 w-[50vw] h-[100vh] opacity-30 animate-drift"
-          style={{
-            background: "conic-gradient(from 200deg at 50% 50%, transparent 0deg, hsl(30 90% 65% / 0.3) 80deg, transparent 160deg)",
-            filter: "blur(80px)",
-            animationDelay: "-8s",
-          }}
-        />
         {/* spotlight follows cursor */}
         <div
           className="absolute pointer-events-none w-[600px] h-[600px] rounded-full"
