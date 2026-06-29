@@ -75,10 +75,10 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     background:
-      radial-gradient(ellipse 80% 55% at 50% 0%, hsl(var(--orange-glow) / 0.10) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 50% at 5% 35%, hsl(var(--amber) / 0.07) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 50% at 85% 95%, hsl(var(--gold) / 0.07) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 50% at 15% 100%, hsl(var(--bronze) / 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 55% at 50% 0%, hsl(var(--orange-glow) / 0.04) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 5% 35%, hsl(var(--amber) / 0.03) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 95%, hsl(var(--gold) / 0.03) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 15% 100%, hsl(var(--bronze) / 0.03) 0%, transparent 55%),
       hsl(var(--background));
     overflow-x: hidden;
   }
