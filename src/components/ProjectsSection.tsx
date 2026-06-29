@@ -63,10 +63,10 @@ const projects = [
   {
     n: "07",
     title: "RevenueAI — Sales Forecasting Based on Advertisement",
-    tag: "AI · Predictive Analytics · Business Intelligence",
-    tech: ["Machine Learning", "Polynomial Regression", "Python", "Streamlit", "Analytics", "Forecasting"],
+    tag: "AI · Predictive Analytics",
+    tech: ["Machine Learning", "Polynomial Regression", "Python", "Streamlit"],
     description:
-      "An intelligent sales forecasting platform powered by Polynomial Regression. Analyzes advertising investments across TV, Radio, and Newspaper channels to predict future sales, optimize marketing budgets, and deliver actionable business insights through an interactive dashboard.",
+      "An intelligent sales forecasting platform powered by Polynomial Regression. Analyzes advertising investments across TV, Radio, and Newspaper channels to predict future sales, optimize marketing budgets, and deliver actionable business insights through an interactive dashboard.\n\nAchieved 95.3% R² accuracy with 0.903 MAE, validated through enabling businesses to make data-driven marketing decisions with confidence.",
     github: "#",
     live: "https://naveen-khan-sales-prediction-app-bamzvr.streamlit.app",
   },
