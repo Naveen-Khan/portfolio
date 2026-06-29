@@ -7,23 +7,23 @@
 @layer base {
   :root {
     /* BROWN · ORANGE · BLACK · WHITE */
-    --background: 0 0% 6%;              /* near black */
+    --background: 0 0% 0%;              /* pure black */
     --foreground: 0 0% 98%;             /* white */
 
-    --card: 20 15% 10%;                 /* deep brown-black */
+    --card: 0 0% 8%;                     /* near black */
     --card-foreground: 0 0% 98%;
 
-    --popover: 20 15% 10%;
+    --popover: 0 0% 8%;
     --popover-foreground: 0 0% 98%;
 
     /* Orange primary */
     --primary: 22 90% 55%;              /* vivid orange */
     --primary-foreground: 0 0% 8%;
 
-    --secondary: 22 20% 14%;
+    --secondary: 22 20% 12%;
     --secondary-foreground: 0 0% 98%;
 
-    --muted: 22 15% 13%;
+    --muted: 22 15% 12%;
     --muted-foreground: 28 10% 70%;
 
     --accent: 22 90% 55%;
@@ -32,8 +32,8 @@
     --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 22 20% 18%;
-    --input: 22 20% 18%;
+    --border: 22 20% 16%;
+    --input: 22 20% 16%;
     --ring: 22 90% 60%;
 
     --radius: 0.5rem;
@@ -53,16 +53,16 @@
     --purple-ambient: 25 55% 35%;
     --purple-glow: 22 70% 45%;
 
-    --glass-bg: 20 15% 10%;
-    --glass-border: 22 20% 22%;
+    --glass-bg: 0 0% 8%;
+    --glass-border: 22 20% 20%;
 
-    --sidebar-background: 0 0% 6%;
+    --sidebar-background: 0 0% 0%;
     --sidebar-foreground: 0 0% 98%;
     --sidebar-primary: 22 90% 55%;
     --sidebar-primary-foreground: 0 0% 8%;
-    --sidebar-accent: 22 20% 14%;
+    --sidebar-accent: 22 20% 12%;
     --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 22 20% 18%;
+    --sidebar-border: 22 20% 16%;
     --sidebar-ring: 22 90% 60%;
   }
 
@@ -75,10 +75,10 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     background:
-      radial-gradient(ellipse 80% 55% at 50% 0%, hsl(var(--orange-glow) / 0.10) 0%, transparent 55%),
-      radial-gradient(ellipse 60% 50% at 5% 35%, hsl(var(--amber) / 0.07) 0%, transparent 55%),
-      radial-gradient(ellipse 70% 50% at 85% 95%, hsl(var(--gold) / 0.07) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 50% at 15% 100%, hsl(var(--bronze) / 0.08) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 55% at 50% 0%, hsl(var(--orange-glow) / 0.04) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 50% at 5% 35%, hsl(var(--amber) / 0.03) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 95%, hsl(var(--gold) / 0.03) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 15% 100%, hsl(var(--bronze) / 0.03) 0%, transparent 55%),
       hsl(var(--background));
     overflow-x: hidden;
   }
