@@ -8,14 +8,24 @@ const projects = [
   {
     n: "01",
     title: "AI-Powered Chatbot Assistant",
-    tag: "RAG · LLM · NLP",
-    tech: ["RAG", "LLM", "Python", "LangChain", "Vector DB", "NLP"],
+    tag: "AI · RAG · ENTERPRISE SUPPORT",
+    tech: ["Retrieval-Augmented Generation", "LLM", "LangChain", "Python", "Streamlit", "FAISS"],
     description:
-      "An enterprise-grade conversational assistant built on a Retrieval-Augmented Generation pipeline. Ingests domain documents, chunks and embeds them into a vector store, and uses an LLM with carefully engineered prompts to deliver context-aware, citation-backed answers. Supports multi-turn memory, fallback handling for out-of-scope queries, and a clean chat UI optimized for real customer-support workflows.",
+      "An enterprise-grade conversational assistant that answers customer and employee queries by retrieving information from company documents. Uses free FAISS vector search and Mistral LLM to deliver accurate, citation-backed responses. Includes conversation memory, handles unknown questions politely, and offers an interactive Streamlit UI. Reduced operational costs by 30% and minimized the need for human by 40%.",
     github: "https://github.com/Naveen-Khan/CATI--chatbot",
   },
   {
     n: "02",
+    title: "Machdollas AI Customer Support Agent",
+    tag: "AI Automation",
+    tech: ["n8n", "Google Gemini", "Google Sheets", "Webhooks", "HTML/CSS/JS", "Vercel"],
+    description:
+      "A fully automated AI-driven customer support system for a restaurant chain, handling menu queries, order placement, tracking, and cancellations in real-time. Built a 24/7 autonomous AI agent using n8n and Google Gemini that reduced manual customer service workload by 65%. Integrated Google Sheets as a live backend for dynamic menu retrieval and order tracking, cutting order error rates by 40%. Deployed a responsive chat interface on Vercel for seamless customer interaction.",
+    github: "#",
+    live: "https://machdonals-ai-agent.vercel.app",
+  },
+  {
+    n: "03",
     title: "Autonomous Infrastructure Inspection",
     tag: "Computer Vision · YOLO",
     tech: ["YOLOv8", "OpenCV", "PyTorch", "Streamlit", "Python"],
@@ -24,7 +34,7 @@ const projects = [
     github: "https://github.com/Naveen-Khan/Autonomous-Infrastructure-Inspection-System",
   },
   {
-    n: "03",
+    n: "04",
     title: "Medical Disease Diagnosis Agent",
     tag: "DenseNet · TensorFlow",
     tech: ["DenseNet121", "TensorFlow", "Keras", "CNN", "Streamlit"],
@@ -33,16 +43,16 @@ const projects = [
     github: "#",
   },
   {
-    n: "04",
+    n: "05",
     title: "Multimodal Smart Wearable Safety System",
     tag: "YOLO · GPS · Voice",
     tech: ["YOLOv8", "Raspberry Pi", "GPS", "Voice Recognition", "IoT"],
     description:
-      "A wearable personal-safety device that fuses computer vision, audio and location signals. An on-device YOLO model detects weapons and physical threats from a body-cam feed, while voice-trigger phrases and a panic button instantly broadcast GPS coordinates with a live alert to emergency contacts. 🏆 Awarded 2nd place at the IEEE Project Exhibition 2025 for innovation in multimodal embedded AI.",
+      "A wearable personal-safety device that fuses computer vision, audio and location signals. An on-device YOLO model detects weapons and physical threats from a body-cam feed, while voice-trigger phrases and a panic button instantly broadcast GPS coordinates with a live alert to emergency contacts. Awarded 2nd place at the IEEE Project Exhibition 2025 for innovation in multimodal embedded AI.",
     github: "https://github.com/Naveen-Khan/Multimodal-Smar-Wearable-Device-For-Personal-Saftey",
   },
   {
-    n: "05",
+    n: "06",
     title: "Coffee Shop Sales Analytics",
     tag: "Excel · Data Viz",
     tech: ["Excel", "Power Query", "Pivot Tables", "DAX", "Dashboards"],
@@ -51,22 +61,14 @@ const projects = [
     github: "https://github.com/Naveen-Khan/Data-Analyst-projects",
   },
   {
-    n: "06",
+    n: "07",
     title: "RevenueAI — Sales Forecasting Based on Advertisement",
     tag: "AI · Predictive Analytics · Business Intelligence",
     tech: ["Machine Learning", "Polynomial Regression", "Python", "Streamlit", "Analytics", "Forecasting"],
     description:
       "An intelligent sales forecasting platform powered by Polynomial Regression. Analyzes advertising investments across TV, Radio, and Newspaper channels to predict future sales, optimize marketing budgets, and deliver actionable business insights through an interactive dashboard.",
     github: "#",
-  },
-  {
-    n: "07",
-    title: "Machdollas AI Customer Support Agent",
-    tag: "n8n · Google Gemini · Google Sheets · Webhooks · HTML/CSS/JS · Vercel",
-    tech: ["n8n", "Google Gemini", "Google Sheets", "Webhooks", "HTML/CSS/JS", "Vercel"],
-    description:
-      "A fully automated AI-driven customer support system for a restaurant chain, handling menu queries, order placement, tracking, and cancellations in real-time. Built a 24/7 autonomous AI agent using n8n and Google Gemini that reduced manual customer service workload by 65%. Integrated Google Sheets as a live backend for dynamic menu retrieval and order tracking, cutting order error rates by 40%. Deployed a responsive chat interface on Vercel for seamless customer interaction.",
-    github: "#",
+    live: "https://naveen-khan-sales-prediction-app-bamzvr.streamlit.app",
   },
 ];
 
@@ -125,9 +127,20 @@ const ProjectCard = ({ p, i }: { p: typeof projects[number]; i: number }) => {
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 group-hover:text-copper-glow transition-colors">
-          Case Study <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </div>
+        {p.live ? (
+          <a
+            href={p.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 hover:text-copper-glow transition-colors"
+          >
+            Live Demo <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </a>
+        ) : (
+          <div className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-copper-glow/80 group-hover:text-copper-glow transition-colors">
+            Case Study <HiArrowUpRight className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </div>
+        )}
       </div>
     </motion.div>
   );
