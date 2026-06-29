@@ -50,6 +50,24 @@ const projects = [
       "A full business-intelligence study of a multi-location coffee chain's transactional data. Cleaned and modeled raw POS exports with Power Query, built pivot-driven analyses of revenue trends, peak hours, product mix, store performance and customer behavior, and packaged the findings into an interactive dashboard with actionable recommendations for marketing and operations.",
     github: "https://github.com/Naveen-Khan/Data-Analyst-projects",
   },
+  {
+    n: "06",
+    title: "RevenueAI — Sales Forecasting Based on Advertisement",
+    tag: "AI · Predictive Analytics · Business Intelligence",
+    tech: ["Machine Learning", "Polynomial Regression", "Python", "Streamlit", "Analytics", "Forecasting"],
+    description:
+      "An intelligent sales forecasting platform powered by Polynomial Regression. Analyzes advertising investments across TV, Radio, and Newspaper channels to predict future sales, optimize marketing budgets, and deliver actionable business insights through an interactive dashboard.",
+    github: "#",
+  },
+  {
+    n: "07",
+    title: "Machdollas AI Customer Support Agent",
+    tag: "n8n · Google Gemini · Google Sheets · Webhooks · HTML/CSS/JS · Vercel",
+    tech: ["n8n", "Google Gemini", "Google Sheets", "Webhooks", "HTML/CSS/JS", "Vercel"],
+    description:
+      "A fully automated AI-driven customer support system for a restaurant chain, handling menu queries, order placement, tracking, and cancellations in real-time. Built a 24/7 autonomous AI agent using n8n and Google Gemini that reduced manual customer service workload by 65%. Integrated Google Sheets as a live backend for dynamic menu retrieval and order tracking, cutting order error rates by 40%. Deployed a responsive chat interface on Vercel for seamless customer interaction.",
+    github: "#",
+  },
 ];
 
 const ProjectCard = ({ p, i }: { p: typeof projects[number]; i: number }) => {
