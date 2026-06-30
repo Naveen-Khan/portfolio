@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 
 interface Props {
@@ -12,13 +11,19 @@ const LoadingScreen = ({ onComplete }: Props) => {
   const [typed, setTyped] = useState("");
   const name = "NAVEEN KHAN";
   const ringRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const ORANGE = "#f97316";
+  const ORANGE_GLOW = "rgba(249, 115, 22, 0.55)";
+  const WHITE = "#ffffff";
+  const WHITE_GLOW = "rgba(255, 255, 255, 0.35)";
 
   useEffect(() => {
     if (!ringRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.to(".load-ring-1", { rotate: 360, duration: 6, repeat: -1, ease: "none" });
-      gsap.to(".load-ring-2", { rotate: -360, duration: 9, repeat: -1, ease: "none" });
-      gsap.to(".load-ring-3", { rotate: 360, duration: 14, repeat: -1, ease: "none" });
+      gsap.to(".load-ring-1", { rotate: 360, duration: 5, repeat: -1, ease: "none" });
+      gsap.to(".load-ring-2", { rotate: -360, duration: 8, repeat: -1, ease: "none" });
+      gsap.to(".load-ring-3", { rotate: 360, duration: 12, repeat: -1, ease: "none" });
     }, ringRef);
     return () => ctx.revert();
   }, []);
@@ -29,7 +34,7 @@ const LoadingScreen = ({ onComplete }: Props) => {
       i++;
       setTyped(name.slice(0, i));
       if (i >= name.length) clearInterval(id);
-    }, 90);
+    }, 80);
     return () => clearInterval(id);
   }, []);
 
@@ -41,169 +46,199 @@ const LoadingScreen = ({ onComplete }: Props) => {
       const p = Math.min(1, (t - start) / DURATION);
       const eased = 1 - Math.pow(1 - p, 3);
       setProgress(Math.round(eased * 100));
-      if (p < 1) raf = requestAnimationFrame(tick);
-      else {
+      if (p < 1) {
+        raf = requestAnimationFrame(tick);
+      } else {
         setTimeout(() => setDone(true), 50);
-        setTimeout(() => onComplete(), 550);
+        setTimeout(() => onComplete(), 650);
       }
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [onComplete]);
 
+  useEffect(() => {
+    if (!done || !containerRef.current) return;
+    const el = containerRef.current;
+    gsap.to(el, {
+      opacity: 0,
+      scale: 1.06,
+      filter: "blur(16px)",
+      duration: 0.7,
+      ease: "power2.inOut",
+      onComplete,
+    });
+  }, [done, onComplete]);
+
   return (
-    <AnimatePresence>
-      {!done && (
-        <motion.div
-          ref={ringRef}
-          initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.05, filter: "blur(20px)" }}
-          transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1] }}
-          className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black"
-        >
-          {/* subtle white glows */}
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%)", filter: "blur(100px)" }}
-            animate={{ x: [0, 80, -60, 0], y: [0, -50, 60, 0], scale: [1, 1.2, 0.9, 1] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+    <div
+      ref={containerRef}
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden bg-black"
+    >
+      {/* Ambient orange glows */}
+      <div
+        className="absolute top-1/4 left-1/4 w-[520px] h-[520px] rounded-full pointer-events-none"
+        style={{
+          background: `radial-gradient(circle, ${ORANGE_GLOW} 0%, transparent 65%)`,
+          filter: "blur(100px)",
+          animation: "loadDrift 10s ease-in-out infinite",
+        }}
+      />
+      <div
+        className="absolute bottom-1/4 right-1/4 w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{
+          background: `radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 65%)`,
+          filter: "blur(110px)",
+          animation: "loadDrift 12s ease-in-out infinite reverse",
+        }}
+      />
+
+      {/* Floating particles */}
+      {Array.from({ length: 24 }).map((_, i) => (
+        <span
+          key={i}
+          className="absolute rounded-full pointer-events-none"
+          style={{
+            width: i % 3 === 0 ? 3 : 2,
+            height: i % 3 === 0 ? 3 : 2,
+            left: `${10 + (i * 3.7) % 80}%`,
+            top: `${10 + (i * 5.1) % 80}%`,
+            background: i % 4 === 0 ? ORANGE : WHITE,
+            opacity: 0.6,
+            boxShadow: i % 4 === 0 ? `0 0 10px ${ORANGE_GLOW}` : `0 0 8px ${WHITE_GLOW}`,
+            animation: `loadParticle ${3.5 + (i % 4)}s ease-out ${i * 0.15}s infinite`,
+          }}
+        />
+      ))}
+
+      <div className="relative flex flex-col items-center gap-10 z-10">
+        {/* Rings + Center badge */}
+        <div ref={ringRef} className="relative w-56 h-56 flex items-center justify-center">
+          <div
+            className="load-ring-1 absolute inset-0 rounded-full border"
+            style={{
+              borderColor: "rgba(255,255,255,0.12)",
+              borderTopColor: ORANGE,
+              boxShadow: `0 0 45px ${ORANGE_GLOW}, inset 0 0 30px rgba(255,255,255,0.05)`,
+            }}
           />
-          <motion.div
-            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%)", filter: "blur(120px)" }}
-            animate={{ x: [0, -60, 80, 0], y: [0, 50, -50, 0], scale: [1, 0.9, 1.15, 1] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          <div
+            className="load-ring-2 absolute inset-5 rounded-full border-2"
+            style={{
+              borderColor: "rgba(255,255,255,0.08)",
+              borderRightColor: WHITE,
+              boxShadow: `0 0 25px ${WHITE_GLOW}`,
+            }}
+          />
+          <div
+            className="load-ring-3 absolute inset-10 rounded-full border"
+            style={{
+              borderColor: "rgba(249,115,22,0.18)",
+              borderBottomColor: ORANGE,
+              boxShadow: `0 0 20px rgba(249,115,22,0.4)`,
+            }}
           />
 
-          {/* white particles */}
-          {Array.from({ length: 30 }).map((_, i) => (
-            <motion.span
-              key={i}
-              className="absolute w-1 h-1 rounded-full bg-white"
+          <div
+            className="relative w-20 h-20 rounded-full flex items-center justify-center font-display font-bold text-2xl animate-pulse-glow"
+            style={{
+              background: "linear-gradient(135deg, #1a1a1a, #0f0f0f)",
+              color: WHITE,
+              border: `1px solid rgba(249,115,22,0.6)`,
+              boxShadow: `0 0 40px ${ORANGE_GLOW}, inset 0 1px 0 rgba(255,255,255,0.1)`,
+            }}
+          >
+            NK
+            <span
+              className="absolute inset-0 rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                boxShadow: "0 0 10px rgba(255,255,255,0.9)",
-              }}
-              animate={{ y: [-20, -200], opacity: [0, 1, 0] }}
-              transition={{
-                duration: 4 + Math.random() * 4,
-                repeat: Infinity,
-                delay: Math.random() * 4,
-                ease: "easeOut",
+                animation: "loadPulse 2.2s ease-in-out infinite",
               }}
             />
-          ))}
-
-          <div className="relative flex flex-col items-center gap-10 z-10">
-            <div className="relative w-56 h-56 flex items-center justify-center">
-              <div
-                className="load-ring-1 absolute inset-0 rounded-full border"
-                style={{
-                  borderColor: "rgba(255,255,255,0.2)",
-                  borderTopColor: "rgba(255,255,255,0.95)",
-                  boxShadow: "0 0 40px rgba(255,255,255,0.25), inset 0 0 30px rgba(255,255,255,0.1)",
-                }}
-              />
-              <div
-                className="load-ring-2 absolute inset-5 rounded-full border-2"
-                style={{
-                  borderColor: "rgba(255,255,255,0.15)",
-                  borderRightColor: "rgba(255,255,255,0.9)",
-                }}
-              />
-              <div
-                className="load-ring-3 absolute inset-10 rounded-full border"
-                style={{
-                  borderColor: "rgba(255,255,255,0.12)",
-                  borderBottomColor: "rgba(255,255,255,0.85)",
-                }}
-              />
-
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ duration: 1, ease: [0.2, 0.8, 0.2, 1] }}
-                className="relative w-20 h-20 rounded-full flex items-center justify-center font-display font-bold text-2xl"
-                style={{
-                  background: "linear-gradient(135deg, #ffffff, #e5e5e5, #ffffff)",
-                  color: "#000",
-                  boxShadow: "0 0 50px rgba(255,255,255,0.6), inset 0 1px 0 #fff",
-                }}
-              >
-                NK
-                <motion.div
-                  className="absolute inset-0 rounded-full"
-                  animate={{ boxShadow: ["0 0 30px rgba(255,255,255,0.5)", "0 0 60px rgba(255,255,255,0.85)", "0 0 30px rgba(255,255,255,0.5)"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-              </motion.div>
-            </div>
-
-            <div className="flex flex-col items-center gap-3">
-              <h1
-                className="font-display text-3xl sm:text-5xl tracking-[0.3em] font-bold text-white"
-                style={{ textShadow: "0 0 40px rgba(255,255,255,0.4)" }}
-              >
-                {typed}
-                <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.6, repeat: Infinity }}
-                  className="inline-block w-[2px] h-8 sm:h-10 ml-1 align-middle bg-white"
-                />
-              </h1>
-
-              <motion.p
-                animate={{ opacity: [0.4, 1, 0.4] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="font-mono-code text-xs uppercase tracking-[0.4em] text-white/80"
-              >
-                Initializing Experience...
-              </motion.p>
-            </div>
-
-            <div className="w-72 sm:w-96 flex flex-col items-center gap-2">
-              <div className="w-full h-[2px] bg-white/15 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${progress}%`,
-                    background: "linear-gradient(90deg, #ffffff, #e5e5e5, #ffffff)",
-                    boxShadow: "0 0 20px rgba(255,255,255,0.7)",
-                  }}
-                />
-              </div>
-              <div className="flex justify-between w-full text-[10px] uppercase tracking-[0.3em] text-white/50 font-mono-code">
-                <span>Loading Assets</span>
-                <span className="text-white">{progress}%</span>
-              </div>
-            </div>
-
-            <svg
-              className="absolute -bottom-20 left-1/2 -translate-x-1/2 opacity-40"
-              width="400"
-              height="40"
-              viewBox="0 0 400 40"
-            >
-              <motion.path
-                d="M0 20 Q 50 0 100 20 T 200 20 T 300 20 T 400 20"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="1.5"
-                animate={{
-                  d: [
-                    "M0 20 Q 50 0 100 20 T 200 20 T 300 20 T 400 20",
-                    "M0 20 Q 50 40 100 20 T 200 20 T 300 20 T 400 20",
-                    "M0 20 Q 50 0 100 20 T 200 20 T 300 20 T 400 20",
-                  ],
-                }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </svg>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </div>
+
+        {/* Text */}
+        <div className="flex flex-col items-center gap-3">
+          <h1
+            className="font-display text-3xl sm:text-5xl tracking-[0.3em] font-bold"
+            style={{ color: WHITE, textShadow: `0 0 35px ${ORANGE_GLOW}` }}
+          >
+            {typed}
+            <span
+              className="inline-block w-[2px] h-8 sm:h-10 ml-1 align-middle"
+              style={{ background: ORANGE, animation: "loadBlink 0.7s step-end infinite" }}
+            />
+          </h1>
+
+          <p
+            className="font-mono-code text-xs uppercase tracking-[0.4em]"
+            style={{ color: "rgba(255,255,255,0.75)" }}
+          >
+            Initializing Experience...
+          </p>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-72 sm:w-96 flex flex-col items-center gap-2">
+          <div className="w-full h-[3px] bg-white/10 rounded-full overflow-hidden">
+            <div
+              className="h-full rounded-full transition-all duration-75 ease-out"
+              style={{
+                width: `${progress}%`,
+                background: `linear-gradient(90deg, ${ORANGE}, #ffffff, ${ORANGE})`,
+                boxShadow: `0 0 20px ${ORANGE_GLOW}`,
+              }}
+            />
+          </div>
+          <div className="flex justify-between w-full text-[10px] uppercase tracking-[0.3em] font-mono-code" style={{ color: "rgba(255,255,255,0.5)" }}>
+            <span>Loading Assets</span>
+            <span style={{ color: WHITE }}>{progress}%</span>
+          </div>
+        </div>
+
+        {/* Decorative orange wave */}
+        <svg
+          className="absolute -bottom-24 left-1/2 -translate-x-1/2"
+          width="360"
+          height="40"
+          viewBox="0 0 360 40"
+          style={{ opacity: 0.5 }}
+        >
+          <path
+            d="M0 20 Q 45 0 90 20 T 180 20 T 270 20 T 360 20"
+            fill="none"
+            stroke={ORANGE}
+            strokeWidth="1.5"
+            style={{ animation: "loadWave 2.8s ease-in-out infinite" }}
+          />
+        </svg>
+      </div>
+
+      <style>{`
+        @keyframes loadDrift {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50% { transform: translate(40px, -30px) scale(1.12); }
+        }
+        @keyframes loadParticle {
+          0% { transform: translateY(0); opacity: 0; }
+          20% { opacity: 1; }
+          100% { transform: translateY(-140px); opacity: 0; }
+        }
+        @keyframes loadPulse {
+          0%, 100% { box-shadow: 0 0 25px rgba(249,115,22,0.45); }
+          50% { box-shadow: 0 0 55px rgba(249,115,22,0.85); }
+        }
+        @keyframes loadBlink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+        @keyframes loadWave {
+          0%, 100% { d: path("M0 20 Q 45 0 90 20 T 180 20 T 270 20 T 360 20"); }
+          50% { d: path("M0 20 Q 45 40 90 20 T 180 20 T 270 20 T 360 20"); }
+        }
+      `}</style>
+    </div>
   );
 };
 
