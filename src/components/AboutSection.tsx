@@ -70,12 +70,7 @@ const AboutSection = () => (
             <span className="gradient-text-warm"> real decisions</span>.”
           </p>
           <p className="text-foreground/75 leading-relaxed text-sm sm:text-base">
-            I'm a <span className="text-copper-glow font-semibold">Computer Systems Engineering</span> graduate and
-            AI Engineer with a passion for production-grade machine intelligence — from
-            DenseNet-powered medical imaging to YOLO safety detection, RAG chatbots and
-            autonomous inspection. Hands-on industry experience at the{" "}
-            <span className="text-copper-glow">Civil Aviation Authority Pakistan</span> and{" "}
-            <span className="text-copper-glow">Itsolera Pvt Ltd</span>.
+            Computer Systems Engineering graduate specializing in Artificial Intelligence, Machine Learning, and AI Automation. Skilled in Python, large language model integration, and RAG-based retrieval systems, with hands-on experience building intelligent solutions for real-world organizational needs. I take full ownership of projects from frontend and backend development to API integration and deployment, ensuring end‑to‑end delivery of practical, scalable AI products that lower operational costs and drive measurable impact.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-3 pt-2">
