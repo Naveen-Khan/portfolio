@@ -66,6 +66,7 @@ const skillGroups = [
       { name: "Docker", Icon: SiDocker },
       { name: "Streamlit", Icon: SiStreamlit },
       { name: "Jupyter", Icon: SiJupyter },
+      { name: "n8n", Icon: HiSparkles },
     ],
   },
 ];

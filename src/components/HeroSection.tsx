@@ -125,9 +125,9 @@ const HeroSection = () => {
               sequence={[
                 "AI / ML Engineer",
                 2000,
-                "Computer Systems Engineer",
+                "AI Automation Engineer",
                 2000,
-                "Creative Problem Solver",
+                "Computer System Engineer",
                 2000,
               ]}
               wrapper="span"
@@ -144,8 +144,9 @@ const HeroSection = () => {
           transition={{ duration: 0.8, delay: 1 }}
           className="text-muted-foreground mt-6 max-w-xl mx-auto text-sm sm:text-base leading-relaxed"
         >
-          Crafting intelligent systems where data, design and decision-making meet
-          — RAG pipelines, computer vision, and production-grade ML.
+          Crafting intelligent systems where data, design, and decision-making meet.
+          Building production-grade AI that solves real problems, cuts support costs
+          up to 30% and delivers measurable impact.
         </motion.p>
 
         <motion.div
