@@ -158,6 +158,28 @@
     opacity: 0.06; mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
+  /* Smooth global transitions for headings & cards */
+  h1, h2, h3, h4 {
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1), color 0.4s ease, text-shadow 0.5s ease, letter-spacing 0.5s ease;
+  }
+  h1:hover, h2:hover, h3:hover {
+    letter-spacing: 0.01em;
+    text-shadow: 0 0 28px hsl(var(--copper-glow) / 0.45);
+  }
+  .glass-card, .card-hover-glow {
+    transition: transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.4s ease, box-shadow 0.5s ease, background 0.4s ease;
+  }
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px -20px hsl(var(--copper) / 0.35);
+    border-color: hsl(var(--copper) / 0.55);
+  }
+  a, button {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+  }
+  img, svg {
+    transition: transform 0.6s cubic-bezier(.2,.8,.2,1), filter 0.5s ease, opacity 0.4s ease;
+  }
 }
 
 @layer utilities {
