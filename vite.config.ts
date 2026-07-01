@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: mode === "production" ? "/portfolio/" : "/",
+  base: process.env.DEPLOY_TARGET === "gh-pages" ? "/portfolio/" : "/",
 
   server: {
     host: "::",
