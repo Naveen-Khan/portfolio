@@ -186,7 +186,7 @@ const HeroSection = () => {
               <FaGithub />
             </a>
             <a
-              href="https://www.linkedin.com/in/naveen-khan-ai"
+              href="https://www.linkedin.com/in/naveen-khan-417103258/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"

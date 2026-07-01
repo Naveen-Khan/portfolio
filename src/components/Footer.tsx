@@ -14,7 +14,7 @@ const Footer = () => (
       <div className="flex gap-3">
         {[
           { Icon: FaGithub, href: "https://github.com/Naveen-Khan", label: "GitHub" },
-          { Icon: FaLinkedin, href: "https://www.linkedin.com/in/naveenkhan-ai", label: "LinkedIn" },
+          { Icon: FaLinkedin, href: "https://www.linkedin.com/in/naveen-khan-417103258/", label: "LinkedIn" },
           { Icon: HiMail, href: "mailto:naveenkhan0059@gmail.com", label: "Email" },
         ].map(({ Icon, href, label }) => (
           <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
