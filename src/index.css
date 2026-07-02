@@ -83,7 +83,7 @@
     overflow-x: hidden;
   }
   html { scroll-behavior: smooth; }
-  section[id] { scroll-margin-top: 7.5rem; }
+  section[id] { scroll-margin-top: 5.75rem; }
   ::selection { background: hsl(var(--primary) / 0.35); color: hsl(var(--foreground)); }
 }
 
