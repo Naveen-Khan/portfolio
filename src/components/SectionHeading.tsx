@@ -144,7 +144,7 @@ const SectionHeading = ({
   }, [variant]);
 
   const baseClass =
-    "font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1] tracking-tight inline-block cursor-default transition-transform duration-500 hover:scale-[1.03]";
+    "section-heading-premium font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1] tracking-tight inline-block cursor-default";
 
   const renderHeading = () => {
     if (variant === "split") {
@@ -244,7 +244,7 @@ const SectionHeading = ({
   return (
     <div
       ref={wrapRef}
-      className={`mb-14 ${align === "center" ? "text-center" : "text-left"}`}
+        className={`section-heading-wrap mb-14 ${align === "center" ? "text-center" : "text-left"}`}
     >
       {eyebrow && (
         <div

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 
 const navLinks = [
@@ -11,6 +12,24 @@ const navLinks = [
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
+
+const profileLinks = [
+  { label: "GitHub", href: "https://github.com/Naveen-Khan", Icon: FaGithub },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/naveen-khan-417103258/", Icon: FaLinkedin },
+];
+
+const scrollToSection = (href: string) => {
+  if (typeof window === "undefined") return;
+  if (href === "#") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.replaceState(null, "", window.location.pathname);
+    return;
+  }
+  const el = document.querySelector<HTMLElement>(href);
+  if (!el) return;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.history.replaceState(null, "", `${window.location.pathname}${href}`);
+};
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -54,7 +73,15 @@ const Navbar = () => {
         }}
       >
         <div className="flex items-center justify-between gap-6">
-          <a href="#" className="flex items-center gap-2 group">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#");
+              setOpen(false);
+            }}
+            className="flex items-center gap-2 group"
+          >
             <div className="relative w-9 h-9 rounded-full bg-gradient-to-br from-copper-glow via-copper to-bronze flex items-center justify-center font-display font-bold text-background text-sm">
               NK
               <div className="absolute inset-0 rounded-full bg-copper-glow/40 blur-md group-hover:blur-lg transition-all" />
@@ -69,6 +96,11 @@ const Navbar = () => {
                 <li key={l.href} className="relative">
                   <a
                     href={l.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(l.href);
+                      setOpen(false);
+                    }}
                     className={`relative px-4 py-2 text-xs uppercase tracking-[0.18em] font-medium transition-colors ${
                       isActive ? "text-copper-glow" : "text-muted-foreground hover:text-foreground"
                     }`}
@@ -89,9 +121,28 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden md:flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              {profileLinks.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border/50 text-muted-foreground hover:border-copper/60 hover:text-copper-glow"
+                >
+                  <Icon size={15} />
+                </a>
+              ))}
+            </div>
 
             <a
               href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("#contact");
+                setOpen(false);
+              }}
               className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] px-4 py-2 rounded-full text-background font-semibold bg-gradient-to-r from-copper-glow via-copper to-bronze hover:shadow-[0_0_30px_-5px_hsl(25_78%_55%_/_0.7)] transition-all"
             >
               Let's Talk
@@ -123,13 +174,30 @@ const Navbar = () => {
                   <li key={l.href}>
                     <a
                       href={l.href}
-                      onClick={() => setOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(l.href);
+                        setOpen(false);
+                      }}
                       className="block px-4 py-3 text-xs uppercase tracking-[0.18em] text-muted-foreground hover:text-copper-glow text-center"
                     >
                       {l.label}
                     </a>
                   </li>
                 ))}
+                <li className="grid grid-cols-2 gap-2 pt-2">
+                  {profileLinks.map(({ label, href, Icon }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-border/50 px-4 py-3 text-xs uppercase tracking-[0.16em] text-muted-foreground hover:border-copper/60 hover:text-copper-glow"
+                    >
+                      <Icon size={14} /> {label}
+                    </a>
+                  ))}
+                </li>
               </ul>
             </motion.div>
           )}

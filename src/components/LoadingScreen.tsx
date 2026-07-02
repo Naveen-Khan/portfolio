@@ -50,7 +50,6 @@ const LoadingScreen = ({ onComplete }: Props) => {
         raf = requestAnimationFrame(tick);
       } else {
         setTimeout(() => setDone(true), 50);
-        setTimeout(() => onComplete(), 650);
       }
     };
     raf = requestAnimationFrame(tick);
