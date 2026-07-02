@@ -39,6 +39,10 @@ const Navbar = () => {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 30);
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 12) {
+        setActive("#contact");
+        return;
+      }
       const ids = navLinks.map((l) => l.href.slice(1));
       for (const id of ids) {
         const el = document.getElementById(id);
