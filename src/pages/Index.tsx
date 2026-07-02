@@ -32,7 +32,7 @@ const Index = () => {
 
   return (
     <>
-      <LoadingScreen onComplete={() => setLoading(false)} />
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
       <AnimatePresence>
         {!loading && (
           <motion.div

@@ -21,7 +21,6 @@ const projects = [
     tech: ["n8n", "Google Gemini", "Google Sheets", "Webhooks", "HTML/CSS/JS", "Vercel"],
     description:
       "A fully automated AI-driven customer support system for a restaurant chain, handling menu queries, order placement, tracking, and cancellations in real-time. Built a 24/7 autonomous AI agent using n8n and Google Gemini that reduced manual customer service workload by 65%. Integrated Google Sheets as a live backend for dynamic menu retrieval and order tracking, cutting order error rates by 40%. Deployed a responsive chat interface on Vercel for seamless customer interaction.",
-    github: "#",
     live: "https://machdonals-ai-agent.vercel.app",
   },
   {
@@ -40,7 +39,6 @@ const projects = [
     tech: ["DenseNet121", "TensorFlow", "Keras", "CNN", "Streamlit"],
     description:
       "A deep-learning diagnostic assistant that classifies brain MRI scans across multiple tumor categories. Built on a transfer-learned DenseNet121 backbone with data augmentation, class balancing and fine-tuned dense heads, reaching strong validation accuracy on held-out scans. Wrapped in a clinician-friendly Streamlit interface that returns the predicted class, confidence scores and a Grad-CAM heatmap for explainability.",
-    github: "#",
   },
   {
     n: "05",
@@ -67,7 +65,6 @@ const projects = [
     tech: ["Machine Learning", "Polynomial Regression", "Python", "Streamlit"],
     description:
       "An intelligent sales forecasting platform powered by Polynomial Regression. Analyzes advertising investments across TV, Radio, and Newspaper channels to predict future sales, optimize marketing budgets, and deliver actionable business insights through an interactive dashboard.\n\nAchieved 95.3% R² accuracy with 0.903 MAE, validated through enabling businesses to make data-driven marketing decisions with confidence.",
-    github: "#",
     live: "https://naveen-khan-sales-prediction-app-bamzvr.streamlit.app",
   },
 ];
@@ -105,15 +102,27 @@ const ProjectCard = ({ p, i }: { p: typeof projects[number]; i: number }) => {
       <div className="relative z-10 flex flex-col h-full" style={{ transform: "translateZ(40px)" }}>
         <div className="flex items-start justify-between mb-6">
           <span className="font-mono-code text-xs text-copper-glow/70 tracking-widest">{p.n}</span>
-          <a
-            href={p.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View on GitHub"
-            className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground/70 hover:text-copper-glow border border-border/50 hover:border-copper/60 transition-all"
-          >
-            <FaGithub size={15} />
-          </a>
+          {p.github ? (
+            <a
+              href={p.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${p.title} GitHub repository`}
+              className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground/70 hover:text-copper-glow border border-border/50 hover:border-copper/60 transition-all"
+            >
+              <FaGithub size={15} />
+            </a>
+          ) : (
+            <a
+              href="https://github.com/Naveen-Khan"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Naveen Khan GitHub profile"
+              className="w-10 h-10 rounded-full glass-card flex items-center justify-center text-foreground/70 hover:text-copper-glow border border-border/50 hover:border-copper/60 transition-all"
+            >
+              <FaGithub size={15} />
+            </a>
+          )}
         </div>
         <p className="text-[10px] uppercase tracking-[0.3em] text-copper-glow/80 mb-3">{p.tag}</p>
         <h3 className="font-display text-2xl sm:text-3xl text-foreground/95 leading-tight mb-3 group-hover:gradient-text-warm transition-all">

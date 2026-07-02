@@ -29,9 +29,10 @@ const ContactSection = () => {
   // Honeypot anti-spam
   const [hp, setHp] = useState("");
 
-  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "4-RlRGpAfUbw-bOmI";
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || "service_vepazqn";
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "template_jaj6c4w";
+  const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL || "naveenkhan0059@gmail.com";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,18 +53,27 @@ const ContactSection = () => {
     setErrors({});
     setStatus("sending");
     try {
+      if (!PUBLIC_KEY || !SERVICE_ID || !TEMPLATE_ID) {
+        throw new Error("Email service is not configured");
+      }
       const now = new Date();
       const timeStr = now.toLocaleString();
       const templateParams = {
         name: form.name,
         email: form.email,
+        user_name: form.name,
+        user_email: form.email,
         subject: form.subject,
+        title: form.subject,
         message: form.message,
         time: timeStr,
+        sent_at: timeStr,
         from_name: form.name,
         from_email: form.email,
         reply_to: form.email,
-        to_email: "naveenkhan0059@gmail.com",
+        to_name: "Naveen Khan",
+        to_email: CONTACT_EMAIL,
+        contact_email: CONTACT_EMAIL,
       };
       await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, { publicKey: PUBLIC_KEY });
       setStatus("success");
@@ -93,18 +103,6 @@ const ContactSection = () => {
         ? "top-1.5 text-[9px] text-copper-glow"
         : "top-1/2 -translate-y-1/2 text-xs text-muted-foreground/70"
     }`;
-
-  const Field = ({
-    name,
-    type = "text",
-    label,
-    textarea,
-  }: {
-    name: keyof FormState;
-    type?: string;
-    label: string;
-    textarea?: boolean;
-  }) => null; // (kept inline below for clarity)
 
   return (
     <section id="contact" className="py-32 relative overflow-hidden">

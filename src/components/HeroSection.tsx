@@ -27,6 +27,13 @@ const HeroSection = () => {
     transform: `translate3d(${(mouse.x - 0.5) * depth}px, ${(mouse.y - 0.5) * depth}px, 0)`,
   });
 
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const target = document.querySelector<HTMLElement>(href);
+    target?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState(null, "", `${window.location.pathname}${href}`);
+  };
+
   return (
     <section
       ref={ref}
@@ -157,6 +164,7 @@ const HeroSection = () => {
         >
           <a
             href="#projects"
+            onClick={(e) => handleAnchorClick(e, "#projects")}
             className="btn-glow group inline-flex items-center gap-2 bg-gradient-to-r from-copper-glow via-copper to-bronze text-background px-6 py-3 rounded-full font-semibold text-sm uppercase tracking-[0.15em]"
           >
             Explore Portfolio
@@ -164,6 +172,7 @@ const HeroSection = () => {
           </a>
           <a
             href="#contact"
+            onClick={(e) => handleAnchorClick(e, "#contact")}
             className="glass-card card-hover-glow inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-sm uppercase tracking-[0.15em] text-foreground"
           >
             <HiMail className="text-base" /> Contact Me
